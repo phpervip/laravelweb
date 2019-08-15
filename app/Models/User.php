@@ -15,6 +15,9 @@ class User extends Authenticatable implements MustVerifyEmailContract
 
      protected $connection = 'mysql_member';
      protected $table = 'member';
+
+     protected $primaryKey = 'userid';
+
     // public $timestamps = false;
 
     /**
@@ -53,5 +56,18 @@ class User extends Authenticatable implements MustVerifyEmailContract
     public function getAuthPassword()
     {
         return ['password' => $this->attributes['password'], 'salt' => $this->attributes['encrypt']];
+    }
+
+    /**
+     * Mark the given user's email as verified.
+     *
+     * @return bool
+     */
+    public function markEmailAsVerified()
+    {
+        return $this->forceFill([
+            'email_verified_at' => $this->freshTimestamp(),
+            'member_email_bind' => 1,
+        ])->save();
     }
 }

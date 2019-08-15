@@ -21,7 +21,6 @@ class EnsureEmailIsVerified
         // 2. 邮箱不为空，
         // 3. 并且还未认证 Email
         // 4. 并且访问的不是 email 验证相关 URL 或者退出的 URL。
-
         if ($request->user() &&
             $request->user()->email &&
             ! $request->user()->hasVerifiedEmail()  &&
