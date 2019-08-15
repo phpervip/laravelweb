@@ -232,4 +232,30 @@ return [
 
     ],
 
+    'debug_blacklist' => [
+        '_ENV' => [
+            'APP_KEY',
+            'DB_PASSWORD',
+            'DB_PASSWORD_MEMBER',
+            'YUNPIAN_API_KEY',
+            'REDIS_PASSWORD',
+            'MAIL_USERNAME',
+            'MAIL_PASSWORD',
+        ],
+
+        '_SERVER' => [
+            'APP_KEY',
+            'DB_PASSWORD',
+            'DB_PASSWORD_MEMBER',
+            'REDIS_PASSWORD',
+            'YUNPIAN_API_KEY',
+            'MAIL_USERNAME',
+            'MAIL_PASSWORD',
+        ],
+
+        '_POST' => [
+            'password',
+        ],
+    ],
+
 ];
