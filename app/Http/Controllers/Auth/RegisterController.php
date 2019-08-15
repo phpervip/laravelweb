@@ -50,8 +50,7 @@ class RegisterController extends Controller
     {
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-           // 'phone'    => ['required', 'string', 'digits:11', 'unique:users'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:member'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
             'captcha' => ['required', 'captcha'],
         ], [
@@ -68,11 +67,18 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        $encrypt = create_randomstr(6);
         return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            //'phone'   => $data['phone'],
-            'password' => Hash::make($data['password']),
+            'username' => $data['name'],
+            'nickname' => $data['name'],
+            'encrypt'  => $encrypt,
+            'email'    => $data['email'],
+        // 'password' => Hash::make($data['password']),
+            'password' => password($data['password'], $encrypt),
+            'member_mobile_bind'=>1,
+            'regdate'  => time(),
+            'regip'    => getIp(),
+            'siteid'   => 2,
         ]);
     }
 

@@ -12,7 +12,7 @@
                         <div class="form-group row">
                           <label for="account" class="col-md-4 col-form-label text-md-right">帐号</label>
                           <div class="col-md-6">
-                              <input type="text" name="account" class="form-control @error('account') is-invalid @enderror" placeholder="用户名/邮箱/手机号" value="{{ old('account') }}" required autofocus>
+                              <input type="text" name="account" class="form-control @error('account') is-invalid @enderror" placeholder="用户名/邮箱/手机号" value="{{ old('account','summer') }}" required autofocus>
                               @error('account')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $errors->first('account') }}</strong>
@@ -24,7 +24,7 @@
                             <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
 
                             <div class="col-md-6">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
+                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password" value="nmamtf11">
 
                                 @error('password')
                                     <span class="invalid-feedback" role="alert">
