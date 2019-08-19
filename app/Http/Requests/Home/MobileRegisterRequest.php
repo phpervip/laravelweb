@@ -30,6 +30,7 @@ class MobileRegisterRequest extends FormRequest
         return [
             'verification_code' => 'required|min:4|max:4',
             'name'              => 'required|between:3,25|regex:/^[A-Za-z0-9\-\_]+$/|unique:member,username',
+            'email'             => ['required', 'string', 'email', 'max:255', 'unique:member'],
             'password'          => 'required|string|min:8|confirmed',
         ];
     }

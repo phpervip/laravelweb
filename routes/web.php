@@ -22,7 +22,8 @@ Route::post('logout', 'Auth\LoginController@logout')->name('logout');
 
 // Registration Routes...
 // 用户注册相关路由
-Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');
+// Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');
+Route::get('register', 'Auth\RegisterController@showRegistrationFormStepOne')->name('register');
 Route::post('register', 'Auth\RegisterController@register');
 
 // Password Reset Routes...
@@ -31,6 +32,15 @@ Route::get('password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm'
 Route::post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.email');
 Route::get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm')->name('password.reset');
 Route::post('password/reset', 'Auth\ResetPasswordController@reset')->name('password.update');
+
+// 用手机重置密码相关路由
+Route::get('password/mobilestepone','Auth\ForgotPasswordController@mobileStepOne')->name('password.mobilestepone');
+Route::post('password/mobilestepone','Home\VerificationCodesController@findpwdstore')->name('verificationCodes.findpwdstore');
+Route::get('password/mobilesteptwo','Auth\ForgotPasswordController@mobileStepTwo')->name('password.mobilesteptwo');
+Route::post('password/mobilesteptwo','Home\VerificationCodesController@findpwdupdate')->name('verificationCodes.findpwdupdate');
+
+
+
 
 // Email Verification Routes...
 // Email 认证相关路由
@@ -55,8 +65,13 @@ Route::post('registersteptwo','Home\VerificationCodesController@register')->name
 Route::get('users/{user}/setbindsns','UsersController@setbindsns')->name('users.setbindsns');
 // 手机绑定
 Route::get('users/{user}/bindmobile','UsersController@mobileshow')->name('users.bindmobileshow');
-Route::any('mobile/ajaxsend', 'Home\VerificationCodesController@ajaxsend')->name('mobile.ajaxsend');
+Route::any('mobile/ajaxsend', 'Home\VerificationCodesController@ajaxsend')->name('mobile.ajaxsend');  // 也用于手机找回密码时发送验证码
 Route::post('users/{user}/bindmobileupdate','UsersController@mobileupdate')->name('users.bindmobileupdate');
+
+
+// 个人中心重设密码
+Route::get('users/{user}/passwordreset','UsersController@passwordreset')->name('users.passwordreset');
+Route::post('users/{user}/passwordreset','UsersController@passwordupdate')->name('users.passwordupdate');
 
 
 

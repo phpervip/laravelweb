@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Http\Requests\Home\UserRequest;
 use App\Handlers\ImageUploadHandler;
 use App\Http\Requests\Home\MobileBindRequest;
+use App\Http\Requests\Home\PasswordResetRequest;
 use Auth;
 
 class UsersController extends Controller
@@ -19,6 +20,10 @@ class UsersController extends Controller
 
     public function show(User $user)
     {
+        if(!$user->email){
+            session()->flash('danger', '请先设置邮箱');
+            return view('users.edit',compact('user'));
+        }
         return view('users.show', compact('user'));
     }
 
@@ -40,9 +45,12 @@ class UsersController extends Controller
                 $data['member_avatar'] = $result['path'];
             }
         }
-
+        if($user->email!=$request->email){
+            $data['member_email_bind'] = 0;
+            $data['email_verified_at'] = null;
+        }
+        $data['update_time'] = time();
         $user->update($data);
-
         return redirect()->route('users.show', $user->id)->with('success', '个人资料更新成功！');
     }
 
@@ -53,10 +61,12 @@ class UsersController extends Controller
     }
 
     public function mobileshow(User $user){
+        $this->authorize('update', $user);
         return view('users.mobileshow', compact('user'));
     }
 
     public function mobileupdate(MobileBindRequest $request, User $user){
+        $this->authorize('update', $user);
          $verifyData = \Cache::get($request->verification_key);
 
          //如果数据不存在，说明验证码已经失效。
@@ -84,5 +94,24 @@ class UsersController extends Controller
          \Cache::forget($request->verification_key);
 
          return redirect()->route('users.setbindsns', Auth::id())->with('success', '绑定成功');
+    }
+
+    public function passwordreset(User $user)
+    {
+        $this->authorize('update', $user);
+        return view('users.passwordreset', compact('user'));
+    }
+
+    public function passwordupdate(PasswordResetRequest $request, User $user)
+    {
+        $userinfo = User::where('id','=',Auth::id())->first();
+        if($userinfo['password']!==password($request->oldpassword,$userinfo['encrypt'])){
+            session()->flash('danger', '原密码错误');
+            return view('users.passwordreset', compact('user'));
+        };
+        User::where('id','=',Auth::id())->update([
+            'password'=>password($request->password,$userinfo['encrypt'])
+        ]);
+        return redirect()->route('users.setbindsns', Auth::id())->with('success', '重置成功');
     }
 }

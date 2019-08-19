@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use App\Models\User;
+use Auth;
 
 class EnsureEmailIsVerified
 {

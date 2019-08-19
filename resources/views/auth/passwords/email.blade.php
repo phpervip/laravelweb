@@ -31,13 +31,23 @@
                             </div>
                         </div>
 
-                        <div class="form-group row mb-0">
+                        <div class="form-group row">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-primary">
                                     {{ __('Send Password Reset Link') }}
                                 </button>
                             </div>
                         </div>
+
+                        <div class="form-group row mb-0">
+                            <div class="col-md-6 offset-md-4">
+                                未设置邮箱的用户? 请移步：
+                                <a href="{{route('password.mobilestepone')}}">
+                                  手机找回密码
+                                </a>
+                            </div>
+                        </div>
+
                     </form>
                 </div>
             </div>

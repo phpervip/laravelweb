@@ -19,6 +19,9 @@
         <li class="nav-item">
           <a class="nav-link" href="{{ route('users.edit',$user->id) }}">编辑资料</a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{{ route('users.passwordreset',$user->id) }}">密码重设</a>
+        </li>
       </ul>
    </div>
   </div>

@@ -29,4 +29,14 @@ class ForgotPasswordController extends Controller
     {
         $this->middleware('guest');
     }
+
+    public function mobileStepOne()
+    {
+        return view('auth.passwords.mobilestepone');
+    }
+
+    public function mobileStepTwo()
+    {
+        return view('auth.passwords.mobilesteptwo');
+    }
 }
