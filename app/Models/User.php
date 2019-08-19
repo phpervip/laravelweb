@@ -12,7 +12,6 @@ class User extends Authenticatable implements MustVerifyEmailContract
 
     use Notifiable,MustVerifyEmailTrait;
 
-
      protected $connection = 'mysql_member';
      protected $table = 'member';
 

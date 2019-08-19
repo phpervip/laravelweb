@@ -17,7 +17,6 @@ class CreateMemberTable extends Migration
         // https://www.cnblogs.com/yiweiyihang/p/8434818.html
         Schema::connection("mysql_member")->create('member', function (Blueprint $table) {
                 $table->bigIncrements('id');
-                $table->mediumInteger('phpssouid')->default(1);
                 $table->char('username',20)->default('0');
                 $table->char('password',32);
                 $table->char('encrypt',6)->default('');
@@ -36,14 +35,6 @@ class CreateMemberTable extends Migration
                 $table->char('regip',15)->default('');
                 $table->char('lastip',15)->default('');
                 $table->unsignedSmallInteger('loginnum')->default(0);
-                $table->unsignedTinyInteger('groupid')->default(0);
-                $table->unsignedSmallInteger('areaid')->default(0);
-                $table->decimal('amount', 8, 2)->unsigned()->default(0);
-                $table->unsignedSmallInteger('point')->default(0);
-                $table->unsignedSmallInteger('modelid')->default(0);
-                $table->unsignedTinyInteger('message')->default(0);
-                $table->unsignedTinyInteger('vip')->default(0);
-                $table->unsignedInteger('overduedate')->default(0);
                 $table->unsignedSmallInteger('siteid')->default(1);
                 $table->string('connectid',40)->default('');
                 $table->tinyInteger('islock')->comment('1,锁定。2,正常。3,删除。')->default(1);

@@ -27,7 +27,7 @@ class VerificationCodeRequest extends FormRequest
             'mobile' => [
                 'required',
                 'regex:/^(13[0-9]|14[5-9]|15[0-3,5-9]|16[2,5,6,7]|17[0-8]|18[0-9]|19[1,3,5,8,9])\\d{8}$/',
-                'unique:member,username'
+                'unique:mysql_member.member,username'
             ],
             'captcha' => ['required','captcha'],
         ];
