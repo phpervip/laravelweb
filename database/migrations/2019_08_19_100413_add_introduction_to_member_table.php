@@ -6,6 +6,7 @@ use Illuminate\Database\Migrations\Migration;
 
 class AddIntroductionToMemberTable extends Migration
 {
+
     /**
      * Run the migrations.
      *
@@ -13,7 +14,7 @@ class AddIntroductionToMemberTable extends Migration
      */
     public function up()
     {
-        Schema::table('member', function (Blueprint $table) {
+        Schema::connection("mysql_member")->table('member', function (Blueprint $table) {
             //
              $table->string('introduction')->nullable();
         });
@@ -26,7 +27,7 @@ class AddIntroductionToMemberTable extends Migration
      */
     public function down()
     {
-        Schema::table('member', function (Blueprint $table) {
+        Schema::connection("mysql_member")->table('member', function (Blueprint $table) {
             //
             $table->dropColumn('introduction');
         });

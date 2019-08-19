@@ -6,7 +6,7 @@ use Illuminate\Database\Migrations\Migration;
 
 class CreateMemberTable extends Migration
 {
-    protected $connection = 'mysql_member';
+
     /**
      * Run the migrations.
      *
@@ -15,7 +15,7 @@ class CreateMemberTable extends Migration
     public function up()
     {
         // https://www.cnblogs.com/yiweiyihang/p/8434818.html
-        Schema::create('member', function (Blueprint $table) {
+        Schema::connection("mysql_member")->create('member', function (Blueprint $table) {
                 $table->bigIncrements('id');
                 $table->mediumInteger('phpssouid')->default(1);
                 $table->char('username',20)->default('0');
@@ -71,6 +71,6 @@ class CreateMemberTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('member');
+        Schema::connection("mysql_member")->dropIfExists('member');
     }
 }
