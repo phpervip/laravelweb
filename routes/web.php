@@ -54,9 +54,9 @@ Route::post('registersteptwo','Home\VerificationCodesController@register')->name
 // 帐号绑定
 Route::get('users/{user}/setbindsns','UsersController@setbindsns')->name('users.setbindsns');
 // 手机绑定
-Route::get('users/{user}/bindphone','UsersController@phoneshow')->name('users.bindphoneshow');
-Route::any('phone/ajaxsend', 'Home\VerificationCodesController@ajaxsend')->name('phone.ajaxsend');
-Route::post('users/{user}/bindphoneupdate','UsersController@phoneupdate')->name('users.bindphoneupdate');
+Route::get('users/{user}/bindmobile','UsersController@mobileshow')->name('users.bindmobileshow');
+Route::any('mobile/ajaxsend', 'Home\VerificationCodesController@ajaxsend')->name('mobile.ajaxsend');
+Route::post('users/{user}/bindmobileupdate','UsersController@mobileupdate')->name('users.bindmobileupdate');
 
 
 

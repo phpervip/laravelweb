@@ -16,7 +16,7 @@ class CreateMemberTable extends Migration
     {
         // https://www.cnblogs.com/yiweiyihang/p/8434818.html
         Schema::create('member', function (Blueprint $table) {
-                $table->bigIncrements('userid');
+                $table->bigIncrements('id');
                 $table->mediumInteger('phpssouid')->default(1);
                 $table->char('username',20)->default('0');
                 $table->char('password',32);
@@ -30,7 +30,7 @@ class CreateMemberTable extends Migration
                 $table->tinyInteger('sex')->comment('1男|2女')->default(1);
                 $table->string('true_name',30)->default('')->comment('真实姓名');
                 $table->string('member_areainfo',100)->default('');
-                $table->string('member_avatar',50)->default('');
+                $table->string('member_avatar',200)->default('');
                 $table->unsignedInteger('regdate')->default(0);
                 $table->unsignedInteger('lastdate')->default(0);
                 $table->char('regip',15)->default('');

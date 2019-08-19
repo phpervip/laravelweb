@@ -6,7 +6,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Http\Requests\Home\UserRequest;
 use App\Handlers\ImageUploadHandler;
-use App\Http\Requests\Home\PhoneBindRequest;
+use App\Http\Requests\Home\MobileBindRequest;
 use Auth;
 
 class UsersController extends Controller
@@ -34,10 +34,10 @@ class UsersController extends Controller
         $this->authorize('update', $user);
         $data = $request->all();
 
-        if ($request->avatar) {
-            $result = $uploader->save($request->avatar, 'avatars', $user->id, 416);
+        if ($request->member_avatar) {
+            $result = $uploader->save($request->member_avatar, 'avatars', $user->id, 416);
             if ($result) {
-                $data['avatar'] = $result['path'];
+                $data['member_avatar'] = $result['path'];
             }
         }
 
@@ -52,33 +52,32 @@ class UsersController extends Controller
         return view('users.setbindsns', compact('user'));
     }
 
-    public function phoneshow(User $user){
-        return view('users.phoneshow', compact('user'));
+    public function mobileshow(User $user){
+        return view('users.mobileshow', compact('user'));
     }
 
-    public function phoneupdate(PhoneBindRequest $request, User $user){
+    public function mobileupdate(MobileBindRequest $request, User $user){
          $verifyData = \Cache::get($request->verification_key);
 
          //如果数据不存在，说明验证码已经失效。
          if (!$verifyData) {
             session()->flash('danger', '短信验证码已失效');
-            return view('users.phoneshow', compact('user'))->with('key', $request->verification_key);
+            return view('users.mobileshow', compact('user'))->with('key', $request->verification_key);
          }
 
          // 检验前端传过来的验证码是否和缓存中的一致
          if (!hash_equals($verifyData['code'], $request->code)) {
             session()->flash('danger', '短信验证码错误');
-            return view('users.phoneshow', compact('user'))->with('key', $request->verification_key);
+            return view('users.mobileshow', compact('user'))->with('key', $request->verification_key);
          }
 
           // 如果提交的手机号不一致
-         if (!hash_equals($verifyData['phone'], $request->phone)) {
+         if (!hash_equals($verifyData['mobile'], $request->mobile)) {
             session()->flash('danger', '手机号码不一致');
-            return view('users.phoneshow', compact('user'))->with('key', $request->verification_key);
+            return view('users.mobileshow', compact('user'))->with('key', $request->verification_key);
          }
-
-         $phone = User::where('id', '=', Auth::id())->update(
-           ['phone' => $verifyData['phone']]
+         $mobile = User::where('id', '=', Auth::id())->update(
+           ['mobile' => $verifyData['mobile']]
          );
 
          // 清除验证码缓存

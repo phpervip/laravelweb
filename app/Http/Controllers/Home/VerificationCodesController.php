@@ -7,14 +7,14 @@ use Overtrue\EasySms\EasySms;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Requests\Home\VerificationCodeRequest;
-use App\Http\Requests\Home\PhoneRegisterRequest;
-use App\Http\Requests\Home\PhoneBindRequest;
+use App\Http\Requests\Home\MobileRegisterRequest;
+use App\Http\Requests\Home\MobileBindRequest;
 use Auth;
 
 class VerificationCodesController extends Controller
 {
     public function store(VerificationCodeRequest $request, EasySms $easySms){
-        $phone = $request->phone;
+        $mobile = $request->mobile;
         if(!app()->environment('production')){
             // 非真机发送
             $code  = '1234';
@@ -23,7 +23,7 @@ class VerificationCodesController extends Controller
                 // 生成4位随机数,左侧补0
                 $code = str_pad(random_int(1,9999),4,0,STR_PAD_LEFT);
                 try{
-                    $result = $easySms->send($phone,[
+                    $result = $easySms->send($mobile,[
                         'content'=>"【忆莲池】您的验证码是{$code}。如非本人操作，请忽略本短信"
                     ]);
 
@@ -38,7 +38,7 @@ class VerificationCodesController extends Controller
         $expiredAt = now()->addMinutes(10);
 
         // 缓存验证码 10分钟过期。
-        \Cache::put($key, ['phone' => $phone, 'code' => $code], $expiredAt);
+        \Cache::put($key, ['mobile' => $mobile, 'code' => $code], $expiredAt);
 
         // return redirect()->route('registersteptwo')->with('key', $key)->with('success', '手机验证码已发送');
         if(!app()->environment('production')){
@@ -51,7 +51,7 @@ class VerificationCodesController extends Controller
     }
 
 
-     public function register(PhoneRegisterRequest $request)
+     public function register(mobileRegisterRequest $request)
      {
          // 暂不知如何把 此处验证码错误返回 显示在验证码输入框的下一行。
          // 获取刚刚缓存的验证码和key
@@ -75,7 +75,7 @@ class VerificationCodesController extends Controller
             'username' => $request->name,
             'nickname' => $request->name,
             'encrypt'  => $encrypt,
-            'mobile'   => $verifyData['phone'],
+            'mobile'   => $verifyData['mobile'],
             'password' => password($request->password, $encrypt),
             'member_mobile_bind'=>1,
             'regdate'  => time(),
@@ -89,10 +89,10 @@ class VerificationCodesController extends Controller
      }
 
      // ajax 手机发送验证码
-     public function ajaxsend(PhoneBindRequest $request, EasySms $easySms)
+     public function ajaxsend(MobileBindRequest $request, EasySms $easySms)
      {
           //获取前端ajax传过来的手机号
-          $phone = $request->phone;
+          $mobile = $request->mobile;
 
           // 生成4位随机数，左侧补0
           $code = str_pad(random_int(1, 9999), 4, 0, STR_PAD_LEFT);
@@ -102,7 +102,7 @@ class VerificationCodesController extends Controller
               $code  = '1234';
           }else{
               try {
-                   $result = $easySms->send($phone, [
+                   $result = $easySms->send($mobile, [
                         'content' => "【忆莲池】您的验证码是{$code}。如非本人操作，请忽略本短信"
                    ]);
               } catch (Overtrue\EasySms\Exceptions\NoGatewayAvailableException $exception) {
@@ -114,7 +114,7 @@ class VerificationCodesController extends Controller
           $key = 'verificationCode_' . str_random(15);
           $expiredAt = now()->addMinutes(10);
           // 缓存验证码 10 分钟过期。
-          \Cache::put($key, ['phone' => $phone, 'code'=> $code], $expiredAt);
+          \Cache::put($key, ['mobile' => $mobile, 'code'=> $code], $expiredAt);
           return response()->json([
            'key'        => $key,
            'expired_at' => $expiredAt->toDateTimeString(),

@@ -16,7 +16,7 @@ class User extends Authenticatable implements MustVerifyEmailContract
      protected $connection = 'mysql_member';
      protected $table = 'member';
 
-     protected $primaryKey = 'userid';
+     protected $primaryKey = 'id';
 
     // public $timestamps = false;
 
@@ -28,7 +28,7 @@ class User extends Authenticatable implements MustVerifyEmailContract
     protected $fillable = [
         'username', 'nickname','email', 'encrypt','password','mobile',
         'member_mobile_bind','member_email_bind','regdate',
-        'regip','siteid','introduction','avatar'
+        'regip','siteid','introduction','member_avatar'
     ];
 
     /**

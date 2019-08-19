@@ -4,7 +4,7 @@ namespace App\Http\Requests\Home;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class PhoneRegisterRequest extends FormRequest
+class MobileRegisterRequest extends FormRequest
 {
 
 
