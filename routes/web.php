@@ -40,8 +40,6 @@ Route::get('password/mobilesteptwo','Auth\ForgotPasswordController@mobileStepTwo
 Route::post('password/mobilesteptwo','Home\VerificationCodesController@findpwdupdate')->name('verificationCodes.findpwdupdate');
 
 
-
-
 // Email Verification Routes...
 // Email 认证相关路由
 Route::get('email/verify', 'Auth\VerificationController@show')->name('verification.notice');
