@@ -26,5 +26,9 @@ class AppServiceProvider extends ServiceProvider
         \Auth::provider('self-eloquent', function ($app, $config) {
             return New \App\Libs\SelfEloquentUserProvider($app['hash'], $config['model']);
         });
+
+        app('view')->prependNamespace('admin', resource_path('views/admin'));
     }
+
+
 }

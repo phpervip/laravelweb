@@ -19,7 +19,7 @@ return [
     |--------------------------------------------------------------------------
     |
     | The logo of all admin pages. You can also set it as an image by using a
-    | `img` tag, eg '<img src="http://logo-url" alt="Admin logo">'.
+    | `img` tag, eg '<img src="http://logo-ulogin_background_imagerl" alt="Admin logo">'.
     |
     */
     'logo' => '<b>Laravel</b> education',
@@ -249,7 +249,8 @@ return [
     | Set a default avatar for newly created users.
     |
     */
-    'default_avatar' => '/vendor/laravel-admin/AdminLTE/dist/img/user2-160x160.jpg',
+    //'default_avatar' => '/vendor/laravel-admin/AdminLTE/dist/img/user2-160x160.jpg',
+    'default_avatar' => '/uploads/images/website/user2-160x160.jpg',
 
     /*
     |--------------------------------------------------------------------------
@@ -300,7 +301,7 @@ return [
     | This value is used to set the background image of login page.
     |
     */
-    'login_background_image' => '',
+    'login_background_image' => '/uploads/images/website/kongzi.jpg',
 
     /*
     |--------------------------------------------------------------------------
