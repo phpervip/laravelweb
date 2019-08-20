@@ -7,6 +7,9 @@ use Illuminate\Contracts\Auth\MustVerifyEmail as MustVerifyEmailContract;
 use Illuminate\Auth\MustVerifyEmail as MustVerifyEmailTrait;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
+use App\Models\User\Address;
+use App\Models\User\Sns;
+
 class User extends Authenticatable implements MustVerifyEmailContract
 {
 
@@ -15,7 +18,6 @@ class User extends Authenticatable implements MustVerifyEmailContract
      protected $connection = 'mysql_member';
      protected $table = 'member';
 
-     protected $primaryKey = 'id';
 
     // public $timestamps = false;
 
@@ -68,5 +70,17 @@ class User extends Authenticatable implements MustVerifyEmailContract
             'email_verified_at' => $this->freshTimestamp(),
             'member_email_bind' => 1,
         ])->save();
+    }
+
+
+
+    public function sns()
+    {
+        return $this->hasOne(Sns::class);
+    }
+
+    public function address()
+    {
+        return $this->hasOne(Address::class);
     }
 }

@@ -2,13 +2,14 @@
 
 namespace App\Admin\Controllers;
 
-use App\Models\User;
 use Encore\Admin\Controllers\AdminController;
 use Encore\Admin\Controllers\HasResourceActions;
 use Encore\Admin\Form;
 use Encore\Admin\Grid;
 use Encore\Admin\Show;
 use Encore\Admin\Layout\Content;
+use App\Models\ChinaArea;
+use App\Models\User;
 
 
 class UsersController extends AdminController
@@ -44,12 +45,31 @@ class UsersController extends AdminController
         $grid->email_verified_at('已验证邮箱')->display(function($value){
             return $value ? '是' : '否';
         });
+        $grid->sex('性别');
         $grid->created_at('注册时间');
+
+         $grid->filter(function (Grid\Filter $filter) {
+
+            $filter->disableIdFilter();
+
+            $filter->like('username','用户');
+
+            $filter->equal('address.province_id', '省份')
+                ->select(ChinaArea::province()->pluck('name','id'))
+                ->load('address.city_id', '/admin/api/china/city');
+
+            // 三级联动无法使用
+            $filter->equal('address.city_id', '城市')->select()
+                ->load('address.district_id', '/admin/api/china/district');
+
+            $filter->equal('address.district_id', '地区')->select();
+
+        });
 
         $grid->disableCreateButton();
         $grid->actions(function($actions){
             $actions->disableDelete();
-            $actions->disableEdit();
+            $actions->disableView();
         });
         $grid->tools(function($tools){
             $tools->batch(function($batch){
@@ -59,42 +79,76 @@ class UsersController extends AdminController
         return $grid;
     }
 
+
     /**
-     * Make a show builder.
+     * Display the specified resource.
      *
-     * @param mixed $id
-     * @return Show
+     * @param  int $id
+     * @return Content
      */
-    protected function detail($id)
+    public function edit($id, Content $content)
     {
-        $show = new Show(User::findOrFail($id));
-        $show->field('id', __('Id'));
-        $show->field('nickname', __('Nickname'));
-        $show->field('mobile', __('Mobile'));
-        $show->field('email', __('Email'));
-        $show->field('email_verified_at', __('Email verified at'));
-        $show->field('password', __('Member email bind'));
-        $show->field('remember_token', __('Remember token'));
-        $show->field('created_at', __('Created at'));
-        $show->field('updated_at', __('Updated at'));
-        return $show;
+        return $content
+            ->header($this->title)
+            ->description('查看')
+            ->body($this->form()->edit($id));
     }
 
-    /**
-     * Make a form builder.
-     *
-     * @return Form
-     */
-    protected function form()
+    public function form()
     {
         $form = new Form(new User);
+        $form->tab('基本', function (Form $form) {
+            $form->display('id');
+            $form->text('username','用户名')/*->rules('required')*/;
+            $form->email('email','Email')->rules('required');
+            $form->display('created_at','创建时间');
+            $form->display('updated_at','更新时间');
+        })->tab('第三方信息', function (Form $form) {
+            $form->text('sns.qq','QQ');
+            $form->text('sns.wechat','微信号');
+        })->tab('地址', function (Form $form) {
+            $form->select('address.province_id','省份')->options(
+                ChinaArea::province()->pluck('name', 'id')
+            )->load('address.city_id', '/admin/api/china/city');
 
-        $form->text('username', __('Username'));
-        $form->text('countrycode', __('Countrycode'))->default('86');
-        $form->mobile('mobile', __('Mobile'));
-        $form->email('email', __('Email'));
-        $form->datetime('email_verified_at', __('Email verified at'))->default(date('Y-m-d H:i:s'));
-        $form->switch('password', __('Member email bind'));
+            $form->select('address.city_id','城市')->options(function ($id) {
+                return ChinaArea::options($id);
+            })->load('address.district_id', '/admin/api/china/district');
+
+            $form->select('address.district_id','地区')->options(function ($id) {
+                return ChinaArea::options($id);
+            });
+
+            $form->text('address.address','详细地址');
+
+        });
+
+        $form->tools(function(Form\tools $tools){
+            $tools->disableView();
+            // 去掉`删除`按钮
+            $tools->disableDelete();
+        });
+
+        $form->footer(function ($footer) {
+
+        // 去掉`重置`按钮
+        $footer->disableReset();
+
+        // 去掉`提交`按钮
+        $footer->disableSubmit();
+
+        // 去掉`查看`checkbox
+        $footer->disableViewCheck();
+
+        // 去掉`继续编辑`checkbox
+        $footer->disableEditingCheck();
+
+        // 去掉`继续创建`checkbox
+        $footer->disableCreatingCheck();
+
+});
+
+
         return $form;
     }
 }

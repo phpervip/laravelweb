@@ -15,7 +15,7 @@ class CreateMemberSnsTable extends Migration
     {
         Schema::connection('mysql_member')->create('member_sns', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->Integer('userid');
+            $table->Integer('user_id');
             $table->string('qq',20)->default('');
             $table->string('wechat',20)->default('');
             $table->string('weibo',20)->default('');
