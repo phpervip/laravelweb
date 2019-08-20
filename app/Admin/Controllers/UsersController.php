@@ -45,7 +45,7 @@ class UsersController extends AdminController
         $grid->email_verified_at('已验证邮箱')->display(function($value){
             return $value ? '是' : '否';
         });
-        $grid->sex('性别');
+        $grid->sex('性别')->using(['1' => '男', '2' => '女']);
         $grid->created_at('注册时间');
 
          $grid->filter(function (Grid\Filter $filter) {
