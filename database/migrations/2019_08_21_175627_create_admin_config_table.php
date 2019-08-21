@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateEduCategoryTable extends Migration
+class CreateAdminConfigTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,14 @@ class CreateEduCategoryTable extends Migration
      */
     public function up()
     {
-        Schema::create('edu_category', function (Blueprint $table) {
+        Schema::create('admin_config', function (Blueprint $table) {
             $table->increments('id');
-            $table->Integer('parent_id')->default(0);
-            $table->string('title',50)->default('');
-            $table->Integer('order')->default(0);
-            $table->string('desc',255)->default('');
-            $table->string('cover',100)->default('');
+            $table->string('name',255);
+            $table->text('value');
+            $table->text('description')->nullable();
+            $table->string('title',50)->nullable();
+            $table->Integer('sort')->nullable();
+            $table->string('remark',50)->nullable();
             $table->timestamps();
         });
     }
@@ -31,6 +32,6 @@ class CreateEduCategoryTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('edu_category');
+        Schema::dropIfExists('admin_config');
     }
 }
