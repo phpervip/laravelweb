@@ -14,7 +14,7 @@ class CreateMemberThirdInfoTable extends Migration
     public function up()
     {
         Schema::connection('mysql_member')->create('member_third_info', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->increments('id');
             $table->string('type',45)->default('');
             $table->string('uid',100)->default('');
             $table->string('province',45)->default('');

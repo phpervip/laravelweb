@@ -14,7 +14,7 @@ class CreateEduCourseTable extends Migration
     public function up()
     {
         Schema::create('edu_course', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->increments('id');
             $table->string('title',30)->default('');
             $table->string('desc',255)->default('');
             $table->Integer('profession_id')->default(0);

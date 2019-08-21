@@ -14,7 +14,7 @@ class CreateEduLiveTable extends Migration
     public function up()
     {
         Schema::create('edu_live', function (Blueprint $table) {
-            $table->Increments('id');
+            $table->increments('id');
             $table->string('title',50)->default('');
             $table->Integer('profession_id');
             $table->Integer('stream_id');

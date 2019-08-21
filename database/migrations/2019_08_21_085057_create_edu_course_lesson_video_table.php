@@ -14,7 +14,7 @@ class CreateEduCourseLessonVideoTable extends Migration
     public function up()
     {
         Schema::create('edu_course_lesson_video', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->increments('id');
             $table->Integer('lesson_id')->default(0);
             $table->string('video_quality',50)->default('');
             $table->string('video_num',50)->nullable();

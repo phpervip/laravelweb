@@ -14,7 +14,7 @@ class CreateEduStreamTable extends Migration
     public function up()
     {
         Schema::create('edu_stream', function (Blueprint $table) {
-            $table->Increments('id');
+            $table->increments('id');
             $table->string('stream_name');
             $table->enum('status',[1,2,3]);
             $table->Integer('permited_at');

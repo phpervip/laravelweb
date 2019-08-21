@@ -177,7 +177,7 @@ class CourseLessonController extends Controller
             $form->display('updated_at', '修改时间');
         })->tab('内容',function (Form $form){
             // $form->textarea('content.content','内容');
-              $form->summernote('content.content','内容');
+             $form->summernote('content.content','内容');
         })->tab('视频',function (Form $form){
             $form->text('video.video_quality','视频质量');
             $form->text('video.video_num','视频编号');

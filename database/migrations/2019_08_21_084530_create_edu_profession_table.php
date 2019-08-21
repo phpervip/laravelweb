@@ -14,7 +14,7 @@ class CreateEduProfessionTable extends Migration
     public function up()
     {
         Schema::create('edu_profession', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->increments('id');
             $table->string('pro_name',20)->default('');
             $table->Integer('protype_id')->default(0);
             $table->string('teachers_ids',255)->default('');

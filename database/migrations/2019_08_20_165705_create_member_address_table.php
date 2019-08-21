@@ -14,7 +14,7 @@ class CreateMemberAddressTable extends Migration
     public function up()
     {
         Schema::connection('mysql_member')->create('member_address', function (Blueprint $table) {
-            $table->BigIncrements('id');
+            $table->increments('id');
             $table->Integer('user_id');
             $table->Integer('province_id')->default(0);
             $table->Integer('city_id')->default(0);

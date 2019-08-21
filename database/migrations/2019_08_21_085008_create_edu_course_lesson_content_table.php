@@ -14,7 +14,7 @@ class CreateEduCourseLessonContentTable extends Migration
     public function up()
     {
         Schema::create('edu_course_lesson_content', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->increments('id');
             $table->Integer('lesson_id')->default(0);
             $table->text('content')->nullable();
             $table->timestamps();

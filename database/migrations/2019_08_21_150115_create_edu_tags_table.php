@@ -14,7 +14,7 @@ class CreateEduTagsTable extends Migration
     public function up()
     {
         Schema::create('edu_tags', function (Blueprint $table) {
-            $table->Increments('id');
+            $table->increments('id');
             $table->string('name',255)->default('');
             $table->tinyInteger('hot')->default(0);
             $table->tinyInteger('new')->default(0);

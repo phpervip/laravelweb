@@ -14,7 +14,7 @@ class CreateEduCourseLessonRadioTable extends Migration
     public function up()
     {
         Schema::create('edu_course_lesson_radio', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->increments('id');
             $table->Integer('lesson_id')->default(0);
             $table->string('radio_num',30)->nullable();
             $table->string('mobile_pic',10)->default('');
