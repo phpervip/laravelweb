@@ -48,8 +48,10 @@ class CreateMemberTable extends Migration
                 $table->Integer('update_time')->comment('信息最近更新时间')->default(0);
                 $table->string('member_mac',100)->default('');
                 $table->date('birthday')->nullable();
+                // 下面是新增的
                 $table->timestamp('email_verified_at')->nullable();
                 $table->rememberToken();
+                $table->enum('type',[1,2])->default(1)->comment('1学生，2老师');
                 $table->timestamps();
 
         });

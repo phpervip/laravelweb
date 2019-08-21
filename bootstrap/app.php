@@ -11,6 +11,9 @@
 |
 */
 
+// 引入常量文件
+require __DIR__ . '/initBase.php';
+
 $app = new Illuminate\Foundation\Application(
     $_ENV['APP_BASE_PATH'] ?? dirname(__DIR__)
 );

@@ -56,3 +56,39 @@ function getIp()
         return '';
 }
 
+/**
+ * 根据编号返回mp4_url地址,返回不带域名的后面一段。
+ * 例： YS30-02-02，52-24-0001
+ * mp4/52/52-24/52-24-0001.mp4
+ */
+function get_video_key($num, $type)
+{
+    if ($num) {
+        $n = explode("-", $num);
+        if (isset($n[0]) && isset($n[1])) {
+            if (substr($num, 0, 2) == 'YS') {
+                $a = str_replace('YS', '', $n[0]);
+                if ($a) {
+                    $item = 'YS' . '/' . $a . '/' . $num;
+                } else {
+                    $item = $n[0] . '/' . $n[0] . '-' . $n[1] . '/' . $num;
+                }
+            } else {
+                $item = $n[0] . '/' . $n[0] . '-' . $n[1] . '/' . $num;
+            }
+            $mp4_key =  "/" . $item . "." . $type;
+            return $mp4_key;
+        }else{
+            return '';
+        }
+    } else {
+        return '';
+    }
+}
+
+
+function get_video_url($domain, $key)
+{
+    return $domain.$key;
+}
+
