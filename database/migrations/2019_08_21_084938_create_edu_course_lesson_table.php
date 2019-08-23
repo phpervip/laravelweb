@@ -20,7 +20,7 @@ class CreateEduCourseLessonTable extends Migration
             $table->Integer('video_time')->default(0);
             $table->string('video_url',255)->default('');
             $table->Integer('sort')->default(0);
-            $table->string('desc',255)->default('');
+            $table->string('desc',255)->nullable();
             $table->enum('status',[1,2])->default(2);
             $table->timestamps();
         });

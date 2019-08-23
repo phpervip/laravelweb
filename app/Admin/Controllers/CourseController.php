@@ -197,7 +197,10 @@ class CourseController extends Controller
         $form->textarea('desc', '简介');
         $form->select('teacher_id','授课老师')->options(User::where('type','=',2)->get()->pluck('username', 'id'));
         // 原文件名
-        $form->image('cover', '封面图')->move('/image_course/'.date('Ym').'/');
+        // $form->image('cover', '封面图')->move('/image_course/'.date('Ym').'/');
+
+        $form->media('cover', '封面图')->path('');
+
         $form->radio('status','状态')->options($status_arr)->inline();
         $form->multipleSelect('tags','标签')->options(Tag::all()->pluck('name', 'id'));
         $form->display('created_at', '创建时间');

@@ -400,15 +400,25 @@ return [
        'media-manager' => [
             'disk' => 'admin'   // Points to the disk set in config/filesystem.php
         ],
-        'summernote' => [
+       /* 'summernote' => [
 
             //Set to false if you want to disable this extension
-            'enable' => true,
+            'enable' => false,
 
             // Editor configuration
             'config' => [
                  'lang'   => 'zh-CN',
                  'height' => 500,
+            ]
+        ],*/
+        'wang-editor' => [
+
+            // 如果要关掉这个扩展，设置为false
+            'enable' => true,
+
+            // 上传图片地址
+            'config' => [
+                 // 'uploadImgServer' => '/uploads'
             ]
         ]
     ]

@@ -18,8 +18,8 @@ class CreateEduCourseLessonVideoTable extends Migration
             $table->Integer('lesson_id')->default(0);
             $table->string('video_quality',50)->default('');
             $table->string('video_num',50)->nullable();
-            $table->string('file_type',50)->default('');
-            $table->string('m3u8_quality',50)->default('');
+            $table->string('file_type',50)->nullable();
+            $table->string('m3u8_quality',50)->nullable();
             $table->timestamps();
         });
     }

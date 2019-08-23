@@ -1,4 +1,5 @@
 <?php
+use Encore\Admin\Form;
 
 /**
  * Laravel-admin - admin builder based on Laravel.
@@ -18,7 +19,14 @@
  *
  */
 
-Encore\Admin\Form::forget(['map', 'editor']);
 
 // 覆盖`admin`命名空间下的视图
 app('view')->prependNamespace('admin', resource_path('views/admin'));
+
+// 一个简单的文件浏览扩展
+Form::extend('media', \Encore\FileBrowser\FileBrowserField::class);
+
+
+
+
+

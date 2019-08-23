@@ -20,7 +20,7 @@ class CreateEduCourseTable extends Migration
             $table->Integer('profession_id')->default(0);
             $table->Integer('classroom_id')->default(0)->comment('班级ID');
             $table->Integer('category_id')->default(0);
-            $table->Integer('teacher_id')->default(0);
+            $table->Integer('teacher_id')->default(1)->nullable();
             $table->string('cover',255)->default('');
             $table->string('tags',255)->default('');
             $table->Integer('sort')->default(0);

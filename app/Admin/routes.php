@@ -52,6 +52,9 @@ Route::group([
     $router->get('api/china/city', 'China\ChinaController@city');
     $router->get('api/china/district', 'China\ChinaController@district');
 
+    // 图片上传
+    Route::post('/uploadimg', 'UploadsController@uploadimg');
+
 });
 
 
