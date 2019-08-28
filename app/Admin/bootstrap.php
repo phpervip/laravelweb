@@ -1,4 +1,5 @@
 <?php
+// use App\Admin\Extensions\WangEditor;
 use Encore\Admin\Form;
 
 /**
@@ -25,6 +26,8 @@ app('view')->prependNamespace('admin', resource_path('views/admin'));
 
 // 一个简单的文件浏览扩展
 Form::extend('media', \Encore\FileBrowser\FileBrowserField::class);
+
+// Form::extend('wangeditor', WangEditor::class);
 
 
 

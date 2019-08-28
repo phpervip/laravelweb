@@ -11,8 +11,13 @@
 |
 */
 
-// 主页
-Route::get('/', 'PagesController@root')->name('root');
+// PC 首页
+// Route::get('/', 'PagesController@root')->name('root');
+
+
+Route::redirect('/','home');
+
+Route::get('home','Home\IndexController@index')->name('index');
 
 // Authentication Routes...
 // 用户身份验证相关的路由

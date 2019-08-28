@@ -418,7 +418,8 @@ return [
 
             // 上传图片地址
             'config' => [
-                 // 'uploadImgServer' => '/uploads'
+                // 'uploadImgServer' => '/admin/upimage'
+                // 暂无法实现上传到服务器。
             ]
         ]
     ]

@@ -1,5 +1,15 @@
 {
     "Login": "登录",
     "Password": "密码",
-    "Remember Me": "记住我"
+    "Remember Me": "记住我",
+
+    "Title": "标题",
+    "Content": "内容",
+    "Cover": "横图",
+    "Order": "排序",
+    "Is focus": "首页焦点",
+    "Recommend": "推荐",
+    "Hot": "热点",
+    "New": "最新",
+    "Url": "网址"
 }
