@@ -153,7 +153,7 @@ return [
     'upload' => [
 
         // Disk in `config/filesystem.php`.
-        'disk' => 'admin',
+        'disk' => 'public',
 
         // Image and file upload path under the disk above.
         'directory' => [
@@ -398,7 +398,7 @@ return [
     */
      'extensions' => [
        'media-manager' => [
-            'disk' => 'admin'   // Points to the disk set in config/filesystem.php
+            'disk' => 'public'   // Points to the disk set in config/filesystem.php
         ],
        /* 'summernote' => [
 

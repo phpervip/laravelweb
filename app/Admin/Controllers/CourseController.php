@@ -120,7 +120,7 @@ class CourseController extends Controller
 
         });
         $grid->cover('课程封面')->display(function ($cover){
-            $cover_url = Storage::disk('admin')->url($cover);
+            $cover_url = Storage::disk('public')->url($cover);
             return $cover_url;
         })->image('',60,'');
         $grid->tags('标签')->pluck('name')->label();
@@ -199,7 +199,7 @@ class CourseController extends Controller
         // 原文件名
         // $form->image('cover', '封面图')->move('/image_course/'.date('Ym').'/');
 
-        $form->media('cover', '封面图')->path('');
+        $form->image('cover', '封面图')->move('/course/'.date('Ym').'/');
 
         $form->radio('status','状态')->options($status_arr)->inline();
         $form->multipleSelect('tags','标签')->options(Tag::all()->pluck('name', 'id'));

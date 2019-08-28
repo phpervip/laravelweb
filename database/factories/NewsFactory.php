@@ -18,7 +18,7 @@ $factory->define(News::class, function (Faker $faker) {
     return [
         'title'=>$title,
         'content'=>$faker->text(),
-        'cover'=>$images[mt_rand(0,3)],
+        'cover'=>'images/'.$images[mt_rand(0,3)],
         'created_at'=>$created_at,
         'is_focus'=>rand(0,1),
         'recommend'=>rand(0,1),

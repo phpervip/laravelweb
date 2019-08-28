@@ -3,9 +3,8 @@
 namespace App\Models;
 
 use Encore\Admin\Traits\AdminBuilder;
-use Illuminate\Database\Eloquent\Model;
 
-class Course extends Model
+class Course extends Base
 {
     use AdminBuilder;
     protected $table = 'edu_course';

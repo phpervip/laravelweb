@@ -10,6 +10,9 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use App\Models\User\Address;
 use App\Models\User\Sns;
 
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
+
 class User extends Authenticatable implements MustVerifyEmailContract
 {
 
@@ -82,5 +85,14 @@ class User extends Authenticatable implements MustVerifyEmailContract
     public function address()
     {
         return $this->hasOne(Address::class);
+    }
+
+     public function getMemberAvatarUrlAttribute()
+    {
+        if(Str::startsWith($this->attributes['member_avatar'],['http://','https://'])){
+            return $this->attributes['member_avatar'];
+        }
+
+        return Storage::disk('public')->url($this->attributes['member_avatar']);
     }
 }
