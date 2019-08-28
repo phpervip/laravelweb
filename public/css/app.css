@@ -16511,6 +16511,11 @@ body {
   margin-top: 0px;
 }
 
+.navbar-brand > img {
+  width: 30px;
+  height: 30px;
+}
+
 /* Sticky footer styles */
 
 html {

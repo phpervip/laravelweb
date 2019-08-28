@@ -250,7 +250,8 @@ return [
     |
     */
     //'default_avatar' => '/vendor/laravel-admin/AdminLTE/dist/img/user2-160x160.jpg',
-    'default_avatar' => '/uploads/images/website/user2-160x160.jpg',
+    // 'default_avatar' => '/uploads/images/website/user2-160x160.jpg',
+    'default_avatar' => '/storage/images/website/user2-160x160.jpg',
 
     /*
     |--------------------------------------------------------------------------
@@ -301,7 +302,7 @@ return [
     | This value is used to set the background image of login page.
     |
     */
-    'login_background_image' => '/uploads/images/website/kongzi.jpg',
+    'login_background_image' => '/storage/images/website/kongzi.jpg',
 
     /*
     |--------------------------------------------------------------------------
