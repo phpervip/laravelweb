@@ -77,6 +77,8 @@ Route::post('users/{user}/passwordreset','UsersController@passwordupdate')->name
 
 // 点播课程
 Route::get('home/course/detail','Home\CourseController@detail')->name('course');
+Route::get('home/course/study','Home\CourseController@study')->name('course.study');
+
 
 
 

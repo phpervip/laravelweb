@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', '首页')
+@section('title', '课程详情')
 
 @section('content')
    <!-- Heading Row -->
@@ -13,7 +13,7 @@
         <p>主讲：学习时长：小时</p>
         <p>This is a template that is great for small businesses. It doesn't have too much fancy flare to it, but it makes a great use of the standard Bootstrap core components. Feel free to use this template for any project you want!</p>
         <a class="btn btn-success" href="#">立即报名</a>
-        <a class="btn btn-primary" href="#">开始学习</a>
+        <a class="btn btn-primary" href="{{ route('course.study',['id'=>$course->id ])}}">开始学习</a>
       </div>
       <!-- /.col-md-4 -->
     </div>

@@ -10,6 +10,7 @@ use App\Models\CourseLesson;
 use App\Models\Tag;
 use Input;
 
+
 class CourseController extends Controller
 {
     // 课程详情
@@ -27,6 +28,18 @@ class CourseController extends Controller
         $tags = Tag::limit(6)->get();
         return view('home.course.detail',compact('course','tags','others'));
     }
+
+    // 立即报名
+
+    // 课时列表
+    public function study(Request $request){
+        $condition=$request->all();
+        $id = Input::get('id');
+        $course = Course::find($id);
+        $lessons = CourseLesson::where('course_id','=',$id)->paginate(3);
+        return view('home.course.study',compact('course','lessons','condition'));
+    }
+
 
     // 下单购买
 
