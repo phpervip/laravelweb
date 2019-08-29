@@ -16525,7 +16525,7 @@ html {
 
 body {
   /* Margin bottom by footer height */
-  margin-bottom: 60px;
+  margin-bottom: 100px;
 }
 
 .footer {
@@ -16533,7 +16533,7 @@ body {
   bottom: 0;
   width: 100%;
   /* Set the fixed height of the footer here */
-  height: 60px;
+  height: 100px;
   background-color: #000;
 }
 
@@ -16543,7 +16543,7 @@ body {
 }
 
 .footer .container p {
-  margin: 19px 0;
+  margin: 33px 0;
   color: #c1c1c1;
 }
 
@@ -16574,7 +16574,7 @@ body {
 }
 
 .carousel-item {
-  height: 370px;
+  height: 378px;
 }
 
 .carousel-item img {
@@ -16586,43 +16586,24 @@ body {
   backgroud-color: #fff;
 }
 
-.courses-card,
-.users-story {
+.portfolio-item {
   margin-bottom: 30px;
 }
 
-.courses-list {
-  padding: 0 5px;
+.user-introduction {
+  position: relative;
+  line-height: 1.4em;
+  /* 3 times the line-height to show 3 lines */
+  height: 4.2em;
+  overflow: hidden;
 }
 
-.courses-list .course-item {
-  padding: 0 5px;
-  margin-bottom: 5px;
-}
-
-.courses-list .course-item .course-content {
-  border: 0px solid #eee;
-}
-
-.courses-list .course-item .course-content .top {
-  padding: 5px;
-}
-
-.courses-list .course-item .course-content .top img {
-  width: 100%;
-}
-
-.courses-list .course-item .course-content .top .title {
-  margin-top: 10px;
-  height: 32px;
-  line-height: 12px;
-  max-height: 32px;
-}
-
-.courses-list .course-item .course-content .top .title a {
-  font-size: 12px;
-  line-height: 14px;
-  color: #333;
-  text-decoration: none;
+.user-introduction::after {
+  content: "...";
+  font-weight: bold;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  padding: 100px 20px 1px 45px;
 }
 

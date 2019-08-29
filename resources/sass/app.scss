@@ -42,7 +42,7 @@ html {
 
 body {
   /* Margin bottom by footer height */
-  margin-bottom: 60px;
+  margin-bottom: 100px;
 }
 
 .footer {
@@ -50,7 +50,7 @@ body {
   bottom: 0;
   width: 100%;
   /* Set the fixed height of the footer here */
-  height: 60px;
+  height: 100px;
   background-color: #000;
 
   .container {
@@ -58,7 +58,7 @@ body {
     padding-left: 15px;
 
     p {
-      margin: 19px 0;
+      margin: 33px 0;
       color: #c1c1c1;
 
       a {
@@ -67,6 +67,7 @@ body {
     }
   }
 }
+
 
 
 /* User register page */
@@ -92,7 +93,7 @@ body {
  }
 
 .carousel-item{
-  height: 370px;
+  height: 378px;
   img{
     width:100%;
     height:100%;
@@ -103,39 +104,26 @@ body {
   backgroud-color: #fff;
 }
 
-.courses-card,.users-story{
-   margin-bottom: 30px;
+.portfolio-item {
+  margin-bottom: 30px;
 }
 
-.courses-list{
-  padding:0 5px;
-  .course-item{
-    padding: 0 5px;
-    margin-bottom: 5px;
-    .course-content{
-      border: 0px solid #eee;
-      .top{
-        padding: 5px;
-        img{
-          width: 100%;
-        }
-        .title{
-          margin-top: 10px;
-          height:32px;
-          line-height:12px;
-          max-height:32px;
-          a{
-            font-size:12px;
-            line-height:14px;
-            color:#333;
-            text-decoration:none;
-          }
-        }
-      }
-    }
-  }
-}
 
+.user-introduction {
+    position:relative;
+    line-height:1.4em;
+    /* 3 times the line-height to show 3 lines */
+    height:4.2em;
+    overflow:hidden;
+}
+.user-introduction::after {
+    content:"...";
+    font-weight:bold;
+    position:absolute;
+    bottom:0;
+    right:0;
+    padding:100px 20px 1px 45px;
+}
 
 
 
