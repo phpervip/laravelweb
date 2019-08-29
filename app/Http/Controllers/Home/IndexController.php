@@ -25,6 +25,6 @@ class IndexController extends Controller
         // 学员故事
         $users = User::limit(4)->where('introduction','<>','')->orderBy('created_at','desc')->get();
 
-        return view('home.index',compact('banners','news','courses','lives','users'));
+        return view('home.index.index',compact('banners','news','courses','lives','users'));
     }
 }

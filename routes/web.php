@@ -14,7 +14,6 @@
 // PC 首页
 // Route::get('/', 'PagesController@root')->name('root');
 
-
 Route::redirect('/','home');
 
 Route::get('home','Home\IndexController@index')->name('index');
@@ -75,6 +74,9 @@ Route::post('users/{user}/bindmobileupdate','UsersController@mobileupdate')->nam
 // 个人中心重设密码
 Route::get('users/{user}/passwordreset','UsersController@passwordreset')->name('users.passwordreset');
 Route::post('users/{user}/passwordreset','UsersController@passwordupdate')->name('users.passwordupdate');
+
+// 点播课程
+Route::get('home/course/detail','Home\CourseController@detail')->name('course');
 
 
 

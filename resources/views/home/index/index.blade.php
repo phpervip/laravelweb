@@ -6,11 +6,11 @@
     <div class="row">
       <div class="col-lg-8">
         <!-- 左边轮播图 -->
-         @include('home._focus')
+         @include('home.index._focus')
       </div>
       <div class="col-lg-4">
         <!-- 右边资讯标题 -->
-         @include('home._sidebar')
+         @include('home.index._sidebar')
 
       </div>
 
@@ -26,7 +26,7 @@
           <a href="#"><img class="card-img-top" src="{{ $course->cover_url }}" alt=""></a>
           <div class="card-body">
             <h6 class="card-title">
-              <a href="#"> {{ $course->title }}</a>
+              <a href="{{ route('course',array('id'=>$course->id)) }}"> {{ $course->title }}</a>
             </h6>
             <p class="card-text">{{ $course->updated_at }}</p>
           </div>
