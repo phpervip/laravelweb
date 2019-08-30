@@ -23,3 +23,17 @@
     </div>
   </div>
 </footer>
+<div class="navbar-fixed-bottom">
+  <hr>
+  <div class="row align-items-end main_nav_bottom text-center">
+      <div class="col">
+        <img width="20%" height="20%" src="storage/images/home.png">
+      </div>
+      <div class="col">
+        <img width="20%" height="20%" src="storage/images/cate.png">
+      </div>
+      <div class="col">
+        <img width="20%" height="20%" src="storage/images/mine.png">
+      </div>
+  </div>
+</div>

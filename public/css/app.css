@@ -16551,6 +16551,26 @@ body {
   color: inherit;
 }
 
+@media (min-width: 576px) {
+  body {
+    margin-bottom: 100px;
+  }
+
+  .main_nav_bottom {
+    display: none;
+  }
+}
+
+@media (max-width: 575.98px) {
+  body {
+    margin-bottom: 15px;
+  }
+
+  .footer {
+    display: none;
+  }
+}
+
 /* User register page */
 
 .register-page img.captcha {
