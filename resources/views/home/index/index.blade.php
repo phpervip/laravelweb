@@ -46,7 +46,7 @@
             </a>
         </div>
         <div class="col-8">
-              <a href="{{ route('course',array('id'=>$course->id)) }}">0000 {{ $course->title }}</a>
+              <a href="{{ route('course',array('id'=>$course->id)) }}"> {{ $course->title }}</a>
               </h6>
               <p class="card-text">{{ $course->updated_at }}</p>
         </div>

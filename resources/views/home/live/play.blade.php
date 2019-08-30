@@ -14,28 +14,18 @@
         <a href="#"></a>
       </small>
     </h2>
-    <!-- https://mdbootstrap.com/plugins/jquery/video/ -->
-    <!-- 16:9 aspect ratio -->
-   <!--  <div class="embed-responsive embed-responsive-16by9">
-      <iframe class="embed-responsive-item" src="{{ $live->stream->stream_name }}"></iframe>
-    </div> -->
-
-    <h3 style="margin-left:10%;">{{$live->title}}</h3>
-      <div style="position:absolute;left:30%;">
-      <div id="playercontainer" class="text-right"></div>
-    </div>
 
     <div class="row">
-
       <!-- Post Content Column -->
       <div class="col-lg-8">
-
+        <h3></h3>
+        <div>
+            <div id="playercontainer" class="text-right"></div>
+        </div>
         <!-- Preview Image -->
         <hr>
         <!-- Date/Time -->
-        <p>{{ $live->title }} </p>
-        <hr>
-
+        <p> </p>
       </div>
 
       <!-- Sidebar Widgets Column -->
@@ -55,9 +45,10 @@
 
 @stop
 @section('scripts')
+<script src="{{ asset('js/cyberplayer.js') }}"></script>
 <script type="text/javascript">
-    //var filepath = "http://gcqq450f71eywn6bv7u.exp.bcevod.com/mda-hbqagik5sfq1jsai/mda-hbqagik5sfq1jsai.mp4";    // 百度mp4示例
-    //var fileimage = "http://gcqq450f71eywn6bv7u.exp.bcevod.com/mda-hbqagik5sfq1jsai/mda-hbqagik5sfq1jsai.jpg";   // 百度mp4示例预览图
+    // var filepath = "http://gcqq450f71eywn6bv7u.exp.bcevod.com/mda-hbqagik5sfq1jsai/mda-hbqagik5sfq1jsai.mp4";    // 百度mp4示例
+    // var fileimage = "http://gcqq450f71eywn6bv7u.exp.bcevod.com/mda-hbqagik5sfq1jsai/mda-hbqagik5sfq1jsai.jpg";   // 百度mp4示例预览图
     var filepath = "{{$live->stream->stream_name}}";
     var fileimage = "{{$live->cover_url}}";   // 百度mp4示例预览图
     var player = cyberplayer("playercontainer").setup({
@@ -66,7 +57,7 @@
         title: "直播中", // 标题
         file: filepath,
         image: fileimage,
-        autostart: false, // 是否自动播放
+        autostart: true, // 是否自动播放
         stretching: "uniform", // 拉伸设置
         repeat: false, // 是否重复播放
         volume: 100, // 音量
