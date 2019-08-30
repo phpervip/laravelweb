@@ -2,9 +2,13 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
 
-class Live extends Model
+class Live extends Base
 {
     protected $table = 'edu_live';
+
+    public function stream()
+    {
+        return $this->hasOne(Stream::class, 'id', 'stream_id');
+    }
 }

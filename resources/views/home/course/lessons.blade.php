@@ -27,10 +27,10 @@
       </div>
       <div class="col-md-8">
         <h5>{{ $lesson->title }}</h5>
-        <p> {{ $lesson->content->content }} </p>
+        <p class="introduction"> {{ $lesson->content->content }} </p>
       </div>
       <div class="col-md-3">
-        <a class="btn btn-primary" href="#">观看
+        <a class="btn btn-primary" href="{{ route('course.play',['id'=>$lesson->id]) }}">观看
           <span class="glyphicon glyphicon-chevron-right"></span>
         </a>
         <a class="btn btn-primary" href="#">收听
@@ -46,7 +46,9 @@
     @endforeach
 
      <!-- Pagination -->
-     <div class="pagination justify-content-center">{{ $lessons->appends($condition)->render() }}</div>  <!-- 只需要添加这一行 -->
+     <div class="pagination justify-content-center">{{ $lessons->appends($condition)->render() }}</div>
+     <!-- 只需要添加这一行 -->
+    <!--  分页扩展学习： https://phpartisan.cn/news/81.html -->
 
 </div>
 

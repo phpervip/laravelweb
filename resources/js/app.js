@@ -5,6 +5,7 @@
  */
 
 require('./bootstrap');
+require('./cyberplayer');
 
 window.Vue = require('vue');
 

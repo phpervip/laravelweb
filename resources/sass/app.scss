@@ -94,6 +94,7 @@ body {
 
 .carousel-item{
   height: 378px;
+  @media (max-width: 575px) { height: 250px; }
   img{
     width:100%;
     height:100%;
@@ -109,14 +110,14 @@ body {
 }
 
 
-.user-introduction {
+.introduction {
     position:relative;
     line-height:1.4em;
     /* 3 times the line-height to show 3 lines */
     height:4.2em;
     overflow:hidden;
 }
-.user-introduction::after {
+.introduction::after {
     content:"...";
     font-weight:bold;
     position:absolute;

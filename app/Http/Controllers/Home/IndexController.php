@@ -22,6 +22,9 @@ class IndexController extends Controller
         // 点播课程
         $courses = Course::limit(8)->get();
 
+        // 直播课程
+        $lives = Live::limit(4)->get();
+
         // 学员故事
         $users = User::limit(4)->where('introduction','<>','')->orderBy('created_at','desc')->get();
 

@@ -29,18 +29,29 @@ class CourseController extends Controller
         return view('home.course.detail',compact('course','tags','others'));
     }
 
-    // 立即报名
+    // 课程报名/课程下单
+    public function order()
+    {
+
+    }
 
     // 课时列表
-    public function study(Request $request){
+    public function lessons(Request $request){
         $condition=$request->all();
         $id = Input::get('id');
         $course = Course::find($id);
         $lessons = CourseLesson::where('course_id','=',$id)->paginate(3);
-        return view('home.course.study',compact('course','lessons','condition'));
+        return view('home.course.lessons',compact('course','lessons','condition'));
+    }
+
+    // 课时播放
+    public function play(){
+        $course_id = Input::get('id');
+        $lesson = CourseLesson::find($course_id);
+        $tags = Tag::limit(6)->get();
+        return view('home.course.play',compact('lesson','course_id','tags'));
     }
 
 
-    // 下单购买
 
 }

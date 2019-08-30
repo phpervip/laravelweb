@@ -1,4 +1,4 @@
-<div id="demo" class="carousel slide" data-ride="carousel">
+<div id="demo" class="carousel slide mt-2 md-2" data-ride="carousel">
             <!-- 指示符 -->
             <ul class="carousel-indicators">
               <li data-target="#demo" data-slide-to="0" class="active"></li>

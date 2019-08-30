@@ -16577,6 +16577,12 @@ body {
   height: 378px;
 }
 
+@media (max-width: 575px) {
+  .carousel-item {
+    height: 250px;
+  }
+}
+
 .carousel-item img {
   width: 100%;
   height: 100%;
@@ -16590,7 +16596,7 @@ body {
   margin-bottom: 30px;
 }
 
-.user-introduction {
+.introduction {
   position: relative;
   line-height: 1.4em;
   /* 3 times the line-height to show 3 lines */
@@ -16598,7 +16604,7 @@ body {
   overflow: hidden;
 }
 
-.user-introduction::after {
+.introduction::after {
   content: "...";
   font-weight: bold;
   position: absolute;

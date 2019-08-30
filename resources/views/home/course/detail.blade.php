@@ -11,9 +11,9 @@
       <div class="col-lg-5">
         <h4 class="font-weight-light">{{ $course->title }}</h1>
         <p>主讲：学习时长：小时</p>
-        <p>This is a template that is great for small businesses. It doesn't have too much fancy flare to it, but it makes a great use of the standard Bootstrap core components. Feel free to use this template for any project you want!</p>
+        <p>{{ $course->desc }}</p>
         <a class="btn btn-success" href="#">立即报名</a>
-        <a class="btn btn-primary" href="{{ route('course.study',['id'=>$course->id ])}}">开始学习</a>
+        <a class="btn btn-primary" href="{{ route('course.lessons',['id'=>$course->id ])}}">开始学习</a>
       </div>
       <!-- /.col-md-4 -->
     </div>
@@ -67,51 +67,14 @@
         </div>
 
       </div>
-      <!-- Sidebar Widgets Column -->
+      <!-- Sidebar Widgets Column  -->
       <div class="col-md-4">
-        <!-- Search Widget -->
-        <div class="card mb-4">
-          <h5 class="card-header">{{Cache()->get('configs')['web_name']}}</h5>
-          <div class="card-body">
-            <div class="input-group">
-              <p> {{Cache()->get('configs')['web_about_us']}} </p>
-              <span class="input-group-btn">
-                <!-- <button class="btn btn-secondary" type="button">Go!</button> -->
-              </span>
-            </div>
-          </div>
-        </div>
 
-        <!-- Categories Widget -->
-        <div class="card my-4">
-          <h5 class="card-header">标签查询</h5>
-          <div class="card-body">
-            <div class="row">
-              <div class="col-lg-6">
-                <ul class="list-unstyled mb-0">
-                  @foreach($tags as $k=>$tag)
-                    @if($k<3)
-                    <li>
-                      <a href="#">{{ $tag->name}}</a>
-                    </li>
-                    @endif
-                  @endforeach
-                </ul>
-              </div>
-              <div class="col-lg-6">
-                <ul class="list-unstyled mb-0">
-                  @foreach($tags as $k=>$tag)
-                    @if($k>2)
-                    <li>
-                      <a href="#">{{ $tag->name}}</a>
-                    </li>
-                    @endif
-                  @endforeach
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
+
+        @include('home.shared._about_us')
+
+        <!-- Categories Widget 标签查询 -->
+        @include('home.shared._tag')
 
         <!-- Side Widget -->
         <div class="card my-4">

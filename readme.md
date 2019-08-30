@@ -23,5 +23,12 @@ php artisan key:generate
 chmod -R 777 storage
 php artisan storage:link
 
-前台登录: spring ,12345678
-后台免密登录
+前台用户密码：12345678
+后台用户密码：admin, admin
+
+
+本项目：
+后台使用 laravel-admin
+http://laravel-admin.org/
+前台使用 bootstrap
+https://v4.bootcss.com/docs/4.3/examples/

@@ -76,11 +76,13 @@ Route::get('users/{user}/passwordreset','UsersController@passwordreset')->name('
 Route::post('users/{user}/passwordreset','UsersController@passwordupdate')->name('users.passwordupdate');
 
 // 点播课程
-Route::get('home/course/detail','Home\CourseController@detail')->name('course');
-Route::get('home/course/study','Home\CourseController@study')->name('course.study');
+Route::get('home/course/detail','Home\CourseController@detail')->name('course');            // 课程详情
+Route::get('home/course/lessons','Home\CourseController@lessons')->name('course.lessons');  // 课时列表
+Route::get('home/course/play','Home\CourseController@play')->name('course.play');         // 课时播放
+Route::get('home/course/order','Home\CourseController@order')->name('course.order');        // 课程下单/报名
 
 
-
+Route::get('home/live/play','Home\LiveController@play')->name('live.play');         // 直播播放
 
 
 
