@@ -118,7 +118,7 @@ class CourseLessonController extends Controller
         // $grid->video('视频播放')->video_url('播放')->video(['videoWidth' => 720, 'videoHeight' => 480]);
 
 
-         $grid->video0()->video_url('播放视频')->display(function($video_url, $column){
+         $grid->video()->video_url('播放视频')->display(function($video_url, $column){
             if($video_url){
                 return $video_url;
             }else{
