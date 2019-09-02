@@ -9,6 +9,10 @@ class CourseLessonVideo extends Model
 {
     protected $table = 'edu_course_lesson_video';
 
+    protected $fillable = [
+        'video_num','video_url'
+    ];
+
     public function lesson(){
         return $this->belongsTo(CourseLesson::class,'id','lesson_id');
     }
@@ -16,7 +20,7 @@ class CourseLessonVideo extends Model
     public function getVideoNumUrlAttribute()
     {
         // return ($this->attributes['video_num']);
-        $video_num_url = get_video_url(VIDEO_QINIU.'/mp4',get_video_key($this->attributes['video_num'],'mp4'));
+        $video_num_url = get_video_url(VIDEO_QINIU.'/mp4',get_video_key($this->attributes['video_num'],'mp4');
         return $video_num_url;
     }
 
