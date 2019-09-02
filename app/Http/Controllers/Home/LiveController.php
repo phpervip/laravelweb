@@ -19,4 +19,24 @@ class LiveController extends Controller
         $tags = Tag::limit(6)->get();
         return view('home.live.play',compact('live','live_id','tags'));
     }
+
+    // 直播列表
+    public function list(Request $request){
+          $builder = Live::query();
+          $condition = [];
+        if ($search = $request->input('search', '')) {
+            $like = '%'.$search.'%';
+            $builder->where(function ($query) use ($like) {
+                $query->where('title', 'like', $like)
+                    ->orWhere('desc', 'like', $like);
+            });
+            $conditon['search'] = $search;
+        }
+        if ($profession_id = request('profession_id')) {
+            $builder->where('profession_id', $profession_id);
+        }
+        $lives = $builder->paginate(12);
+        $professions = Profession::get();   // 初始值
+        return view('home.live.list',compact('lives','professions','profession_id','condition'));
+    }
 }

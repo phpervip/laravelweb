@@ -13,6 +13,47 @@ use Input;
 
 class CourseController extends Controller
 {
+
+    // 课程列表
+    public function list(Request $request)
+    {
+        $builder = Course::query();
+
+        $categorys = Category::where('parent_id',1)->get()->toArray();  // 初始值
+
+        foreach($categorys as $k=>$v){
+              $cates = Category::where('parent_id',$v)->get()->toArray();
+              $categorys[$k]['id']      = $v['id'];
+              $categorys[$k]['level']   = 1;
+              $categorys[$k]['childs']  = (!empty($cates))?1:0;
+              $categorys[$k]['childs_arr']  = $cates;
+        }
+
+        $condition = [];
+
+        if($search = $request->input('search','')){
+            $like = '%'. $search .'%';
+            $builder->where(function($query) use ($like){
+                $query->where('title','like',$like);
+            });
+            $condition['search'] = $search;
+        }
+
+        if($category_id = request('category_id')){
+            // 查两级
+           $cate_ids = Category::where('parent_id',$category_id)->get(['id'])->toArray();
+           $cate_ids = array_column($cate_ids, 'id');
+           array_unshift($cate_ids, intval($category_id));
+           $builder->whereIn('category_id', $cate_ids);
+
+           $condition['category_id'] = $category_id;
+
+        }
+        $courses = $builder->paginate(12);
+
+        return view('home.course.list',compact('courses','categorys','category_id','condition'));
+    }
+
     // 课程详情
     public function detail()
     {

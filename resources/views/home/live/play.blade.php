@@ -57,7 +57,7 @@
         title: "直播中", // 标题
         file: filepath,
         image: fileimage,
-        autostart: true, // 是否自动播放
+        autostart: false, // 是否自动播放
         stretching: "uniform", // 拉伸设置
         repeat: false, // 是否重复播放
         volume: 100, // 音量

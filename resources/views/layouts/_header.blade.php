@@ -11,9 +11,9 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <!-- Left Side Of Navbar -->
       <ul class="navbar-nav mr-auto">
-         <li class="nav-item " ><a class="nav-link" href="">首页</a></li>
-         <li class="nav-item " ><a class="nav-link" href="">点播</a></li>
-         <li class="nav-item " ><a class="nav-link" href="">直播</a></li>
+         <li class="nav-item " ><a class="nav-link" href="{{ route('index') }}">首页</a></li>
+         <li class="nav-item " ><a class="nav-link" href="{{ route('course.list') }}">点播</a></li>
+         <li class="nav-item " ><a class="nav-link" href="{{ route('live.list') }}">直播</a></li>
          <li class="nav-item " ><a class="nav-link" href="">资讯</a></li>
       </ul>
 
