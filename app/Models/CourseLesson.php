@@ -23,7 +23,7 @@ class CourseLesson extends Model
         return $this->hasOne(CourseLessonContent::class,'lesson_id','id');
     }
 
-    public function Video()
+    public function video0()
     {
         return $this->hasOne(CourseLessonVideo::class,'lesson_id','id');
     }

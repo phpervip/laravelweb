@@ -17,8 +17,6 @@ class CreateEduCourseLessonTable extends Migration
             $table->increments('id');
             $table->string('title',50)->default('');
             $table->Integer('course_id')->default(0);
-            $table->Integer('video_time')->default(0);
-            $table->string('video_url',255)->default('');
             $table->Integer('sort')->default(0);
             $table->string('desc',255)->nullable();
             $table->enum('status',[1,2])->default(2);

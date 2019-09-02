@@ -19,4 +19,14 @@ class CourseLessonVideo extends Model
         $video_num_url = get_video_url(VIDEO_QINIU.'/mp4',get_video_key($this->attributes['video_num'],'mp4'));
         return $video_num_url;
     }
+
+
+    public function getVideoUrlOnlyAttribute($value)
+    {
+        if($this->attributes['video_url']){
+            return $this->attributes['video_url'];
+        }else{
+            return get_video_url(VIDEO_QINIU.'/mp4',get_video_key($this->attributes['video_num'],'mp4'));
+        }
+    }
 }

@@ -107,12 +107,30 @@ class CourseLessonController extends Controller
             return ($video_jpg_url);
         })->image('',80,80);
 
-        $grid->video('视频播放')->video_num('播放')->display(
-            function($video_num){
-                $video_url  = get_video_url(VIDEO_QINIU.'/mp4',get_video_key($video_num,'mp4'));
+
+        //  $grid->video('视频播放')->video_num('播放')->display(
+        //     function($video_num){
+        //         $video_url  = get_video_url(VIDEO_QINIU.'/mp4',get_video_key($video_num,'mp4'));
+        //         return $video_url;
+        //     }
+        // )->video(['videoWidth' => 720, 'videoHeight' => 480]);
+
+        // $grid->video('视频播放')->video_url('播放')->video(['videoWidth' => 720, 'videoHeight' => 480]);
+
+
+         $grid->video0()->video_url('播放视频')->display(function($video_url, $column){
+            if($video_url){
                 return $video_url;
+            }else{
+                // $video_num_url  = get_video_url(VIDEO_QINIU.'/mp4',get_video_key($this->video0->video_num,'mp4'));
+                // return $video_num_url;
+                return $this->video_num;   // 这里不知怎么写了，如果这样写，就为空。
+              //  return $this->video0->video_num;   // 如果这样写，就会报错。
             }
-        )->video(['videoWidth' => 720, 'videoHeight' => 480]);
+         })->video(['videoWidth' => 720, 'videoHeight' => 480]);;
+
+
+        // $grid->video('视频播放')->video_url('播放')->video(['videoWidth' => 720, 'videoHeight' => 480]);
 
         $grid->sort('排序')->editable();
         $grid->status('状态')->display(function($status){
@@ -138,8 +156,6 @@ class CourseLessonController extends Controller
         $show->id('Id');
         $show->title('Title');
         $show->course_id('Course id');
-        $show->video_time('Video time');
-        $show->video_url('Video url');
         $show->sort('Sort');
         $show->desc('Desc');
         $show->created_at('Created at');
@@ -183,6 +199,8 @@ class CourseLessonController extends Controller
         })->tab('视频',function (Form $form){
             $form->text('video.video_quality','视频质量');
             $form->text('video.video_num','视频编号');
+            $form->text('video.video_url','视频地址');
+            $form->text('video.video_time','视频时长');
             $form->text('video.file_type','视频类型');
             $form->text('video.m3u8_quality','m3u8质量');
         })->tab('音频',function (Form $form){
