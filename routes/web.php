@@ -87,6 +87,11 @@ Route::get('home/live/list','Home\LiveController@list')->name('live.list');     
 Route::get('home/live/play','Home\LiveController@play')->name('live.play');           // 直播播放
 
 
+// 资讯
+Route::get('home/news/list','Home\NewsController@list')->name('news.list');            // 文章列表
+Route::get('home/news/detail','Home\NewsController@detail')->name('news.detail');      // 文章详情
+
+
 
 
 

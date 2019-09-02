@@ -16,7 +16,10 @@ class CreateEduNewsTable extends Migration
         Schema::create('edu_news', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('title');
+            $table->string('desc');
             $table->text('content');
+            $table->string('author');
+            $table->Integer('category_id')->default(0);
             $table->string('cover')->nullable();
             $table->Integer('order')->nullable();
             $table->tinyInteger('is_focus')->comment('首页轮播');

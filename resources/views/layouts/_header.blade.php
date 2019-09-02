@@ -11,10 +11,10 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <!-- Left Side Of Navbar -->
       <ul class="navbar-nav mr-auto">
-         <li class="nav-item " ><a class="nav-link" href="{{ route('index') }}">首页</a></li>
-         <li class="nav-item " ><a class="nav-link" href="{{ route('course.list') }}">点播</a></li>
-         <li class="nav-item " ><a class="nav-link" href="{{ route('live.list') }}">直播</a></li>
-         <li class="nav-item " ><a class="nav-link" href="">资讯</a></li>
+         <li class="nav-item @if(Request::url() == route('index')) active @endif" ><a class="nav-link" href="{{ route('index') }}">首页</a></li>
+         <li class="nav-item @if(Request::url() == route('course.list')) active @endif" ><a class="nav-link" href="{{ route('course.list') }}">点播</a></li>
+         <li class="nav-item @if(Request::url() == route('live.list')) active @endif" ><a class="nav-link" href="{{ route('live.list') }}">直播</a></li>
+         <li class="nav-item @if(Request::url() == route('news.list')) active @endif" ><a class="nav-link" href="{{ route('news.list') }}">文章</a></li>
       </ul>
 
       <!-- Right Side Of Navbar -->

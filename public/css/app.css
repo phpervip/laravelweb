@@ -16639,3 +16639,10 @@ body {
   height: 188px;
 }
 
+/* news detail page */
+
+.news-detail-img {
+  width: 100%;
+  height: 280px;
+}
+
