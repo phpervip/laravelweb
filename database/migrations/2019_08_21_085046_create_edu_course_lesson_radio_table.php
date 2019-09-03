@@ -17,6 +17,7 @@ class CreateEduCourseLessonRadioTable extends Migration
             $table->increments('id');
             $table->Integer('lesson_id')->default(0);
             $table->string('radio_num',30)->nullable();
+            $table->string('radio_url',255)->nullable();
             $table->string('mobile_pic',10)->nullable();
             $table->Integer('duration')->nullable();
             $table->Integer('filesize')->nullable();

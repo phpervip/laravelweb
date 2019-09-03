@@ -218,6 +218,7 @@ class CourseLessonController extends Controller
             $form->checkbox('video.file_type','视频档案')->options($this->file_type_array)->canCheckAll();
             $form->checkbox('video.m3u8_quality','m3u8清晰度')->options($this->video_quality_array)->canCheckAll();
         })->tab('音频',function (Form $form){
+            $form->text('radio.radio_url','音频地址')->help('填写url地址后，无需填写音频编号');
             $form->text('radio.radio_num','音频编号');
             $form->display('radio.radio_num','音频地址')->with(function($value){
                 $radio_num_url = get_radio_url(MY_QINIU.'/storage/mp3',get_radio_key($value,'mp3'));
