@@ -81,7 +81,6 @@ class CourseLessonController extends Controller
     protected function grid()
     {
         $grid = new Grid(new CourseLesson);
-
         if(request()->has('course_id')){
             $course_id = request()->input('course_id');
             $grid->model()->where('course_id', '=', $course_id);
@@ -100,6 +99,7 @@ class CourseLessonController extends Controller
             // 这里：/storage/images/video/DT/DT-000/DT-000-0024.jpg
             $video_jpg_url  = get_video_url(MY_QINIU.'/storage/images/video/',$video_jpg_key);
             return ($video_jpg_url);
+
         })->image('',80,80);
 
          $grid->video()->video_url('播放视频')->display(function($video_url, $column){
@@ -110,6 +110,8 @@ class CourseLessonController extends Controller
                  // VIDEO_QINIU.'/mp4',get_video_key($video_num,'mp4'));
                  $video_num_url  = get_video_url(MY_QINIU.'/storage/mp4',get_video_key($video_num,'mp4'));
                  return $video_num_url;
+                // return $this->video_num;   // 这里不知怎么写了，如果这样写，就为空。
+                // return $this->video->video_num;   // 如果这样写，就会报错。
             }
          })->video(['videoWidth' => 720, 'videoHeight' => 480]);
 
