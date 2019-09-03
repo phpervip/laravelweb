@@ -47,11 +47,10 @@
 @section('scripts')
 <script src="{{ asset('js/cyberplayer.js') }}"></script>
 <script type="text/javascript">
-     var filepath = "http://gcqq450f71eywn6bv7u.exp.bcevod.com/mda-hbqagik5sfq1jsai/mda-hbqagik5sfq1jsai.mp4";    // 百度mp4示例
-     var fileimage = "http://gcqq450f71eywn6bv7u.exp.bcevod.com/mda-hbqagik5sfq1jsai/mda-hbqagik5sfq1jsai.jpg";   // 百度mp4示例预览图
-    //var filepath = "{{$live->stream->stream_name}}";
-    //var fileimage = "{{$live->cover_url}}";
-
+    // var filepath = "http://gcqq450f71eywn6bv7u.exp.bcevod.com/mda-hbqagik5sfq1jsai/mda-hbqagik5sfq1jsai.mp4";    // 百度mp4示例
+    // var fileimage = "http://gcqq450f71eywn6bv7u.exp.bcevod.com/mda-hbqagik5sfq1jsai/mda-hbqagik5sfq1jsai.jpg";   // 百度mp4示例预览图
+    var filepath = "{{$live->stream->stream_name}}";
+    var fileimage = "{{$live->cover_url}}";
     var baidu_accessKey = "{{$baidu_as}}";
     var player = cyberplayer("playercontainer").setup({
         width: 680, // 宽度，也可以支持百分比(不过父元素宽度要有)

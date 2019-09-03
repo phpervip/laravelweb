@@ -81,6 +81,7 @@ class CourseLessonController extends Controller
     protected function grid()
     {
         $grid = new Grid(new CourseLesson);
+
         if(request()->has('course_id')){
             $course_id = request()->input('course_id');
             $grid->model()->where('course_id', '=', $course_id);
@@ -92,45 +93,25 @@ class CourseLessonController extends Controller
         $grid->course()->title('所属课程');
         $grid->video_time('视频时长');
 
-
-        /*$grid->video_url('视频地址')->display(function($video_url){
-            $video_url = Storage::disk('admin')->url(rtrim(ltrim($video_url,'["'),'"]'));
-            return $video_url;
-        })->video(['videoWidth' => 720, 'videoHeight' => 480]);*/
-
-        $grid->Video1()->video_num('视频编码');
-
-        // 这里最好只读取一次
-        $grid->Video2()->video_num('课时截图')->display(function ($video_num) {
+        $grid->video1()->video_num('视频编码');
+        $grid->video2()->video_num('课时截图')->display(function ($video_num) {
             $video_jpg_key  = get_video_key($video_num,'jpg');
-            $video_jpg_url  = get_video_url(CZ_QINIU.'/uploads/image/video/',$video_jpg_key);
+            // 参考：CZ_QINIU/uploads/image/video/DT/DT-000/DT-000-0024.jpg
+            // 这里：/storage/images/video/DT/DT-000/DT-000-0024.jpg
+            $video_jpg_url  = get_video_url(MY_QINIU.'/storage/images/video/',$video_jpg_key);
             return ($video_jpg_url);
         })->image('',80,80);
-
-
-        //  $grid->video('视频播放')->video_num('播放')->display(
-        //     function($video_num){
-        //         $video_url  = get_video_url(VIDEO_QINIU.'/mp4',get_video_key($video_num,'mp4'));
-        //         return $video_url;
-        //     }
-        // )->video(['videoWidth' => 720, 'videoHeight' => 480]);
-
-        // $grid->video('视频播放')->video_url('播放')->video(['videoWidth' => 720, 'videoHeight' => 480]);
-
 
          $grid->video()->video_url('播放视频')->display(function($video_url, $column){
             if($video_url){
                 return $video_url;
             }else{
-                // $video_num_url  = get_video_url(VIDEO_QINIU.'/mp4',get_video_key($this->video0->video_num,'mp4'));
-                // return $video_num_url;
-                return $this->video_num;   // 这里不知怎么写了，如果这样写，就为空。
-              //  return $this->video0->video_num;   // 如果这样写，就会报错。
+                 $video_num = $this->video->video_num;
+                 // VIDEO_QINIU.'/mp4',get_video_key($video_num,'mp4'));
+                 $video_num_url  = get_video_url(MY_QINIU.'/storage/mp4',get_video_key($video_num,'mp4'));
+                 return $video_num_url;
             }
-         })->video(['videoWidth' => 720, 'videoHeight' => 480]);;
-
-
-        // $grid->video('视频播放')->video_url('播放')->video(['videoWidth' => 720, 'videoHeight' => 480]);
+         })->video(['videoWidth' => 720, 'videoHeight' => 480]);
 
         $grid->sort('排序')->editable();
         $grid->status('状态')->display(function($status){

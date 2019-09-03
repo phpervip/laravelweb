@@ -28,12 +28,12 @@ class CourseLesson extends Model
         return $this->hasOne(CourseLessonVideo::class,'lesson_id','id');
     }
 
-    public function Video1()
+    public function video1()
     {
         return $this->hasOne(CourseLessonVideo::class,'lesson_id','id');
     }
 
-    public function Video2()
+    public function video2()
     {
         return $this->hasOne(CourseLessonVideo::class,'lesson_id','id');
     }

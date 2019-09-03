@@ -128,7 +128,6 @@ class ConfigController extends Controller
             //     Cache::add('configs', $confs);
             // }
 
-
         });
         return $form;
     }
