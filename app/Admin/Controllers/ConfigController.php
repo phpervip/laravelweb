@@ -117,14 +117,17 @@ class ConfigController extends Controller
         $form->saved(function (Form $form) {
             //  配置值写入缓存
             $configs = Config::get();
-             foreach($configs as $val){
+            foreach($configs as $val){
                  $confs[$val['name']] = $val['value'];
             }
-            if (!Cache::has('configs')) {
+
+            // 每次编辑后都重新缓存
+            // if (!Cache::has('configs')) {
                 Cache::put('configs',$confs);
-            }else{
-                Cache::add('configs', $confs);
-            }
+            // }else{
+            //     Cache::add('configs', $confs);
+            // }
+
 
         });
         return $form;

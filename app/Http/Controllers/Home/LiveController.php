@@ -17,7 +17,12 @@ class LiveController extends Controller
         $live_id = Input::get('id');
         $live = Live::with('stream')->find($live_id);
         $tags = Tag::limit(6)->get();
-        return view('home.live.play',compact('live','live_id','tags'));
+
+        // $baidu_as = Cache()->get('configs')['baidu_accessKey'];
+        // 或者写在.env
+        $baidu_as = env('BAIDU_ACCESSKEY','');
+
+        return view('home.live.play',compact('live','live_id','tags','baidu_as'));
     }
 
     // 直播列表
