@@ -17,7 +17,7 @@
     <!-- https://mdbootstrap.com/plugins/jquery/video/ -->
     <!-- 16:9 aspect ratio -->
     <div class="embed-responsive embed-responsive-16by9">
-      <iframe class="embed-responsive-item" src="{{ $lesson->video->video_num_url }}"></iframe>
+      <iframe class="embed-responsive-item" src="{{ $lesson->video->video_url_only }}"></iframe>
     </div>
 
     <div class="row">
@@ -32,7 +32,7 @@
         <hr>
         <!-- Post Content -->
         <blockquote class="blockquote" style="height:300px; overflow-y:auto;">
-          <small class="mb-0">{!! $lesson->content->content !!}</small>
+          <small class="mb-0">{!! isset($lesson->content)? $lesson->content->content : '' !!}</small>
         </blockquote>
         <hr>
 

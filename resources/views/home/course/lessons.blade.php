@@ -27,7 +27,7 @@
       </div>
       <div class="col-md-8">
         <h5>{{ $lesson->title }}</h5>
-        <p class="introduction"> {{ $lesson->content->content }} </p>
+        <p class="introduction"> {{ isset($lesson->content)? $lesson->content->content : ''}} </p>
       </div>
       <div class="col-md-3">
         <a class="btn btn-primary" href="{{ route('course.play',['id'=>$lesson->id]) }}">观看

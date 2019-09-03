@@ -15,6 +15,27 @@ class CourseLessonController extends Controller
 {
     use HasResourceActions;
     protected $status_array = [1=>'草稿',2=>'已审核',3=>'已发布'];
+
+    protected $video_quality_array = [
+                 '360P' => '360P',
+                 '720P' => '720P',
+                 '1080P' => '1080P',
+                 '2160P'=>'2160P',
+            ];
+
+    protected $file_type_array = [
+                '1' => 'Mp3',
+                '2' => '128K',
+                '3' => 'Wmv',
+                '4'=>'Hiwmv',
+                '5'=>'字幕',
+                '6'=>'字幕文稿',
+                '7'=>'DVD',
+                '8'=>'MP4',
+                '9'=>'4K',
+    ];
+
+
     /**
      * Index interface.
      *
@@ -94,10 +115,10 @@ class CourseLessonController extends Controller
 
         $grid->video1()->video_num('视频编码');
         $grid->video2()->video_num('课时截图')->display(function ($video_num) {
-            $video_jpg_key  = get_video_key($video_num,'jpg');
+            // $video_jpg_key  = get_video_key($video_num,'jpg');
             // 参考：CZ_QINIU/uploads/image/video/DT/DT-000/DT-000-0024.jpg
             // 这里：/storage/images/video/DT/DT-000/DT-000-0024.jpg
-            $video_jpg_url  = get_video_url(MY_QINIU.'/storage/images/video/',$video_jpg_key);
+            $video_jpg_url  = get_video_url(MY_QINIU.'/storage/images/video/',get_video_key($video_num,'jpg'));
             return ($video_jpg_url);
 
         })->image('',80,80);
@@ -116,8 +137,7 @@ class CourseLessonController extends Controller
                 // return $this->video_num;   // 这里不知怎么写了，如果这样写，就为空。
                 // return $this->video->video_num;   // 如果这样写，就会报错。
             }
-         });
-         // ->video(['videoWidth' => 720, 'videoHeight' => 480])
+         })->video(['videoWidth' => 720, 'videoHeight' => 480]);
         $grid->sort('排序')->editable();
         $grid->status('状态')->display(function($status){
             $status_arr = [1=>'草稿',2=>'已审核',3=>'已发布'];
@@ -183,12 +203,20 @@ class CourseLessonController extends Controller
                 $form->editor('content.content', '内容');
 
         })->tab('视频',function (Form $form){
-            $form->text('video.video_quality','视频质量');
+            $form->text('video.video_url','视频地址')->help('填写url地址后，无需填写视频编号');
             $form->text('video.video_num','视频编号');
-            $form->text('video.video_url','视频地址');
-            $form->text('video.video_time','视频时长');
-            $form->text('video.file_type','视频类型');
-            $form->text('video.m3u8_quality','m3u8质量');
+            $form->display('video.video_num','视频截图')->with(function ($value) {
+                $video_jpg_url  = get_video_url(MY_QINIU.'/storage/images/video/',get_video_key($value,'jpg'));;
+                return $video_jpg_url;
+            });
+            $form->display('video.video_num','视频地址')->with(function ($value) {
+                $video_num_url  = get_video_url(MY_QINIU.'/storage/mp4',get_video_key($value,'mp4'));
+                return $video_num_url;
+            })->help('根据视频编号自动生成');
+            $form->text('video.video_time','视频时长')->help('单位是秒（s）');
+            $form->checkbox('video.video_quality','视频清晰度')->options($this->video_quality_array)->canCheckAll();;
+            $form->checkbox('video.file_type','视频档案')->options($this->file_type_array)->canCheckAll();
+            $form->checkbox('video.m3u8_quality','m3u8清晰度')->options($this->video_quality_array)->canCheckAll();
         })->tab('音频',function (Form $form){
             $form->text('radio.radio_num','音频编号');
             $form->text('radio.duration','音频时长');
