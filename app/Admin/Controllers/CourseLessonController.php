@@ -108,15 +108,16 @@ class CourseLessonController extends Controller
             }else{
                  if(isset($this->video->video_num)){
                     $video_num = $this->video->video_num;
+                    // VIDEO_QINIU.'/mp4',get_video_key($video_num,'mp4'));
+                    $video_num_url  = get_video_url(MY_QINIU.'/storage/mp4',get_video_key($video_num,'mp4'));
+                    return $video_num_url;
                  }
-                 // VIDEO_QINIU.'/mp4',get_video_key($video_num,'mp4'));
-                 $video_num_url  = get_video_url(MY_QINIU.'/storage/mp4',get_video_key($video_num,'mp4'));
-                 return $video_num_url;
+                 return '';
                 // return $this->video_num;   // 这里不知怎么写了，如果这样写，就为空。
                 // return $this->video->video_num;   // 如果这样写，就会报错。
             }
-         })->video(['videoWidth' => 720, 'videoHeight' => 480]);
-
+         });
+         // ->video(['videoWidth' => 720, 'videoHeight' => 480])
         $grid->sort('排序')->editable();
         $grid->status('状态')->display(function($status){
             $status_arr = [1=>'草稿',2=>'已审核',3=>'已发布'];
