@@ -33,12 +33,20 @@
         <a class="btn btn-primary" href="{{ route('course.play',['id'=>$lesson->id]) }}">观看
           <span class="glyphicon glyphicon-chevron-right"></span>
         </a>
-        <a class="btn btn-primary" href="#">收听
-          <span class="glyphicon glyphicon-chevron-right"></span>
-        </a>
         <a class="btn btn-primary" href="#">阅读
           <span class="glyphicon glyphicon-chevron-right"></span>
         </a>
+        <!-- <a class="btn btn-primary" href="{{ $lesson->radio->radio_num }}">收听
+          <span class="glyphicon glyphicon-chevron-right"></span>
+        </a> -->
+        @if($lesson->radio->radio_url_only)
+        <div class="mt-2">
+          <audio controls="controls">
+            <source src="{{ $lesson->radio->radio_num_url }}" />
+          </audio>
+        </div>
+        @endif
+
       </div>
     </div>
     <!-- /.row -->

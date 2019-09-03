@@ -92,6 +92,16 @@ function get_video_url($domain, $key)
     return $domain.$key;
 }
 
+function get_radio_key($num, $type)
+{
+    return get_video_key($num, $type);
+}
+
+function get_radio_url($domain, $key)
+{
+    return get_video_url($domain, $key);
+}
+
 /**
  * 返回可读性更好的文件尺寸
  */

@@ -219,6 +219,10 @@ class CourseLessonController extends Controller
             $form->checkbox('video.m3u8_quality','m3u8清晰度')->options($this->video_quality_array)->canCheckAll();
         })->tab('音频',function (Form $form){
             $form->text('radio.radio_num','音频编号');
+            $form->display('radio.radio_num','音频地址')->with(function($value){
+                $radio_num_url = get_radio_url(MY_QINIU.'/storage/mp3',get_radio_key($value,'mp3'));
+                return $radio_num_url;
+            })->help('根据音频编号自动生成');
             $form->text('radio.duration','音频时长');
             $form->image('radio.mobile_pic','手机图片');
         });

@@ -81,7 +81,7 @@ class CourseController extends Controller
         $condition=$request->all();
         $id = Input::get('id');
         $course = Course::find($id);
-        $lessons = CourseLesson::where('course_id','=',$id)->paginate(3);
+        $lessons = CourseLesson::where('course_id','=',$id)->paginate(10);
         return view('home.course.lessons',compact('course','lessons','condition'));
     }
 
