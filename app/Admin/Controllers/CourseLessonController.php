@@ -106,7 +106,9 @@ class CourseLessonController extends Controller
             if($video_url){
                 return $video_url;
             }else{
-                 $video_num = $this->video->video_num;
+                 if(isset($this->video->video_num)){
+                    $video_num = $this->video->video_num;
+                 }
                  // VIDEO_QINIU.'/mp4',get_video_key($video_num,'mp4'));
                  $video_num_url  = get_video_url(MY_QINIU.'/storage/mp4',get_video_key($video_num,'mp4'));
                  return $video_num_url;
