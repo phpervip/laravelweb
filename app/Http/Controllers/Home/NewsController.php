@@ -15,6 +15,12 @@ class NewsController extends Controller
         $builder = News::query();
         $categorys = Category::where('parent_id',1)->get()->toArray();  // 初始值
         $condition = [];
+
+        if($search = request('search')){
+            $builder->where('title','like','%'.$search.'%');
+            $condition['search'] = $search;
+        }
+
         if($category_id = request('category_id')){
             // 查两级
            $cate_ids = Category::where('parent_id',$category_id)->get(['id'])->toArray();

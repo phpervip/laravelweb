@@ -18,7 +18,7 @@
       <div class="col-lg-8">
 
         <!-- Preview Image -->
-        <img class="img-fluid rounded news-detail-img" src="{{ $news->cover_url }}" alt="">
+        <img class="img-fluid rounded news-detail-img" src="{{ isset($news->cover_url)?$news->cover_url:'/storage/images/website/about-bg.jpg' }}" alt="" >
         <hr>
         <!-- Date/Time -->
         <p>发布于：{{ $news->updated_at }}</p>

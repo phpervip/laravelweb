@@ -15,6 +15,19 @@
     <div class="row">
          <!-- Sidebar Column -->
           <div class="col-lg-3 mb-4">
+
+             <!-- Search Widget -->
+            <div class="mb-4">
+              <form>
+                <div class="input-group">
+                  <input type="text" class="form-control mr-2" name="search" placeholder="搜索" value="{{ $condition['search'] ?? ''}}">
+                  <span class="input-group-btn">
+                    <button class="btn btn-secondary" type="submit">Go!</button>
+                  </span>
+                </div>
+              </form>
+            </div>
+
             <div class="list-group">
               <a href="{{ route('news.list') }}" class="list-group-item @if( $category_id == '') active @endif">全部分类</a>
               @foreach($categorys as $cate)
