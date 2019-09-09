@@ -17,7 +17,10 @@ class NewsController extends Controller
         $condition = [];
 
         if($search = request('search')){
-            $builder->where('title','like','%'.$search.'%');
+            $like = '%'. $search .'%';
+            $builder->where(function($query) use ($like){
+                $query->where('title','like',$like);
+            });
             $condition['search'] = $search;
         }
 

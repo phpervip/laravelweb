@@ -16,6 +16,9 @@ class EasySmsServiceProvider extends ServiceProvider
     public function boot()
     {
         //
+
+
+
     }
 
         /**
@@ -30,6 +33,18 @@ class EasySmsServiceProvider extends ServiceProvider
         });
 
         $this->app->alias(EasySms::class, 'easysms');
+
+
+        // php artisan tinker 中用这一段测试。
+        // $sms = app('easysms');
+        // try{
+        //     $sms->send(18267165221,[
+        //         'content' => '【忆莲池】您的验证码是1234。如非本人操作，请忽略本短信',
+        //     ]);
+        // } catch(\Overtrue\EasySms\Exceptions\NoGatewayAvailableException $exception){
+        //     $message = $exception->getException('yunpian')->getMessage();
+        //     dd($message);
+        // }
     }
 
 }

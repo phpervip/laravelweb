@@ -93,5 +93,15 @@ Route::get('home/news/detail','Home\NewsController@detail')->name('news.detail')
 
 
 
+Route::group(['prefix' => 'api/v1'], function () {
+  Route::get('user/version',      'Api\v1\UserController@version');
+});
+
+Route::group(['prefix' => 'api/v2'], function () {
+  Route::get('user/version',      'Api\v2\UserController@version');
+});
+
+
+
 
 
