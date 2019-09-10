@@ -1,10 +1,10 @@
 <?php
-namespace Api\v1;
-
+namespace App\Http\Controllers\Api\v1;
+use App\Http\Controllers\Controller;
 
 class UserController extends Controller
 {
-    public function version(){
-        echo 'This is version v1 ~';
+    public function store(){
+        return 'This is version v1 ~';
     }
 }
