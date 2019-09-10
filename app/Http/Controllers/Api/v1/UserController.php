@@ -5,6 +5,6 @@ use App\Http\Controllers\Controller;
 class UserController extends Controller
 {
     public function store(){
-        return 'This is version v1 ~';
+             return 'This is version v1 ~';
     }
 }
