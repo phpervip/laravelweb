@@ -83,7 +83,8 @@ class StreamController extends Controller
 
         $grid = new Grid(new Stream);
         $grid->id('Id');
-        $grid->stream_name('直播流名称')->editable();
+        $grid->stream_title('直播流名称')->editable();
+        $grid->stream_name('直播流地址')->editable();
         $grid->status('状态')->display(function($status){
             $status_arr = Config::get('constants.stream_status');
             return $status_arr[$status];
@@ -111,7 +112,8 @@ class StreamController extends Controller
     {
         $show = new Show(Stream::findOrFail($id));
         $show->id('Id');
-        $show->stream_name('流名称');
+        $show->stream_title('流名称');
+        $show->stream_name('流地址');
         $show->status('状态',function($status){
             $status_arr = Config::get('constants.stream_status');
             return $status_arr[$status];
@@ -129,7 +131,8 @@ class StreamController extends Controller
     {
         $status_arr = Config::get('constants.stream_status');
         $form = new Form(new Stream);
-        $form->text('stream_name', '直播流名称');
+        $form->text('stream_title', '直播流名称');
+        $form->text('stream_name', '直播流地址');
         $form->radio('status','状态')->options($status_arr)->inline();
         $form->datetime('permited_at', '启用时间')->format('YYYY-MM-DD HH:mm:ss');
         // 在表单提交前调用

@@ -14,6 +14,7 @@
         "doctrine/dbal": "^2.9",
         "encore/laravel-admin": "^1.7",
         "fideloper/proxy": "^4.0",
+        "gregwar/captcha": "^1.1",
         "intervention/image": "^2.5",
         "jxlwqq/file-manager": "^1.0",
         "laravel-admin-ext/file-browser": "^0.0.2",

@@ -22,7 +22,6 @@ $api = app('Dingo\Api\Routing\Router');
 // 测试版本. .env 中已设置 默认为v1.
 // 如果访问v2, 用 postman 在 header 中添加 Accept:application/prs.cgedu2.v2+json
 
-
 $api->version('v1',[
     'namespace'=>'App\Http\Controllers\Api\v1'
 ],function($api){
@@ -37,37 +36,10 @@ $api->version('v1',[
         ->name('api.v1.verificationCodes.store');
         // 用户注册
         $api->post('users','UsersController@store')->name('api.v1.user.store');
+        // 图形验证码
+        $api->post('capchas','CapchasController@store')->name('api.v1.capchas.store');
     });
 });
-
-
-// $api->version('v2',[
-//     'namespace'=>'App\Http\Controllers\Api\v2'
-// ],function($api){
-//     // 短信验证码
-//     $api->post('verificationCodes','verificationCodesController@store')
-//     ->name('api.v2.verificationCodes.store');
-// });
-
-
-
-// $api->version('v1',[
-//     'namespace'=>'App\Http\Controllers\Api\v1'
-// ],function($api){
-//     // 测试 v1
-//     $api->get('user/version','UserController@version')
-//     ->name('api.v1.user.store');
-// });
-
-// $api->version('v2',[
-//     'namespace'=>'App\Http\Controllers\Api\v2'
-// ],function($api){
-//     // 测试 v2
-//     $api->get('user/version','UserController@version')
-//     ->name('api.v2.user.version');
-// });
-
-
 
 
 
