@@ -20,7 +20,6 @@ class CreateEduStreamTable extends Migration
             $table->enum('status',[1,2,3]);
             $table->Integer('sort')->default(0);
             $table->Integer('permited_at');
-            $table->Integer('sort');
         });
     }
 
